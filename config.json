@@ -1,0 +1,169 @@
+{
+	"tests": [
+		{
+			"name": "Rozkład losowy",
+			"size_range": {
+				"start": 10000,
+				"step": 10000,
+				"count": 10
+			},
+			"repeats": 5,
+			"generate_function": "random",
+			"applications": [
+				{ "name": "bubble", "command": "./sorter/sorter bubble benchmark" },
+				{ "name": "insertion", "command": "./sorter/sorter insertion benchmark" },
+				{ "name": "selection", "command": "./sorter/sorter selection benchmark" },
+				{ "name": "shell", "command": "./sorter/sorter shell benchmark" }
+			]
+		},
+		{
+			"name": "Rozkład rosnący",
+			"size_range": {
+				"start": 10000,
+				"step": 10000,
+				"count": 10
+			},
+			"repeats": 5,
+			"generate_function": "ascending",
+			"applications": [
+				{ "name": "bubble", "command": "./sorter/sorter bubble benchmark" },
+				{ "name": "selection", "command": "./sorter/sorter selection benchmark" },
+				{ "name": "quick-right", "command": "./sorter/sorter quick-right benchmark" }
+			]
+		},
+		{
+			"name": "Rozkład malejący",
+			"size_range": {
+				"start": 10000,
+				"step": 10000,
+				"count": 10
+			},
+			"repeats": 5,
+			"generate_function": "descending",
+			"applications": [
+				{ "name": "bubble", "command": "./sorter/sorter bubble benchmark" },
+				{ "name": "insertion", "command": "./sorter/sorter insertion benchmark" },
+				{ "name": "selection", "command": "./sorter/sorter selection benchmark" },
+				{ "name": "shell", "command": "./sorter/sorter shell benchmark" },
+				{ "name": "quick-right", "command": "./sorter/sorter quick-right benchmark" }
+			]
+		},
+		{
+			"name": "Rozkład stały",
+			"size_range": {
+				"start": 10000,
+				"step": 10000,
+				"count": 10
+			},
+			"repeats": 5,
+			"generate_function": "constant",
+			"applications": [
+				{ "name": "bubble", "command": "./sorter/sorter bubble benchmark" },
+				{ "name": "selection", "command": "./sorter/sorter selection benchmark" },
+				{ "name": "quick-rand", "command": "./sorter/sorter quick-rand benchmark" },
+				{ "name": "quick-right", "command": "./sorter/sorter quick-right benchmark" }
+			]
+		},
+		{
+			"name": "Rozkład A-kształtny",
+			"size_range": {
+				"start": 10000,
+				"step": 10000,
+				"count": 10
+			},
+			"repeats": 5,
+			"generate_function": "a-shape",
+			"applications": [
+				{ "name": "bubble", "command": "./sorter/sorter bubble benchmark" },
+				{ "name": "selection", "command": "./sorter/sorter selection benchmark" },
+				{ "name": "quick-right", "command": "./sorter/sorter quick-right benchmark" },
+				{ "name": "insertion", "command": "./sorter/sorter insertion benchmark" },
+				{ "name": "shell", "command": "./sorter/sorter shell benchmark" }
+			]
+		},
+		{
+			"name": "Rozkład losowy",
+			"size_range": {
+				"start": 1000000,
+				"step": 1000000,
+				"count": 10
+			},
+			"repeats": 5,
+			"generate_function": "random",
+			"applications": [
+				{ "name": "heap", "command": "./sorter/sorter heap benchmark" },
+				{ "name": "merge", "command": "./sorter/sorter merge benchmark" },
+				{ "name": "counting", "command": "./sorter/sorter counting benchmark" },
+				{ "name": "quick-rand", "command": "./sorter/sorter quick-rand benchmark" },
+				{ "name": "quick-right", "command": "./sorter/sorter quick-right benchmark" }
+			]
+		},
+		{
+			"name": "Rozkład rosnący",
+			"size_range": {
+				"start": 1000000,
+				"step": 1000000,
+				"count": 10
+			},
+			"repeats": 5,
+			"generate_function": "ascending",
+			"applications": [
+				{ "name": "merge", "command": "./sorter/sorter merge benchmark" },
+				{ "name": "quick-rand", "command": "./sorter/sorter quick-rand benchmark" },
+				{ "name": "insertion", "command": "./sorter/sorter insertion benchmark" },
+				{ "name": "shell", "command": "./sorter/sorter shell benchmark" },
+				{ "name": "heap", "command": "./sorter/sorter heap benchmark" },
+				{ "name": "counting", "command": "./sorter/sorter counting benchmark" }
+			]
+		},
+		{
+			"name": "Rozkład malejący",
+			"size_range": {
+				"start": 1000000,
+				"step": 1000000,
+				"count": 10
+			},
+			"repeats": 5,
+			"generate_function": "descending",
+			"applications": [
+				{ "name": "quick-rand", "command": "./sorter/sorter quick-rand benchmark" },
+				{ "name": "merge", "command": "./sorter/sorter merge benchmark" },
+				{ "name": "counting", "command": "./sorter/sorter counting benchmark" },
+				{ "name": "heap", "command": "./sorter/sorter heap benchmark" }
+			]
+		},
+		{
+			"name": "Rozkład stały",
+			"size_range": {
+				"start": 1000000,
+				"step": 1000000,
+				"count": 10
+			},
+			"repeats": 5,
+			"generate_function": "constant",
+			"applications": [
+				{ "name": "insertion", "command": "./sorter/sorter insertion benchmark" },
+				{ "name": "shell", "command": "./sorter/sorter shell benchmark" },
+				{ "name": "heap", "command": "./sorter/sorter heap benchmark" },
+				{ "name": "merge", "command": "./sorter/sorter merge benchmark" },
+				{ "name": "counting", "command": "./sorter/sorter counting benchmark" }
+			]
+		},
+		{
+			"name": "Rozkład A-kształtny",
+			"size_range": {
+				"start": 1000000,
+				"step": 1000000,
+				"count": 10
+			},
+			"repeats": 5,
+			"generate_function": "a-shape",
+			"applications": [
+				{ "name": "heap", "command": "./sorter/sorter heap benchmark" },
+				{ "name": "merge", "command": "./sorter/sorter merge benchmark" },
+				{ "name": "quick-rand", "command": "./sorter/sorter quick-rand benchmark" },
+				{ "name": "counting", "command": "./sorter/sorter counting benchmark" }
+			]
+		}
+	]
+}
