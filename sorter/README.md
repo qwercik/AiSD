@@ -1,14 +1,22 @@
 # sorter
 Program sortujący dane przy pomocy wybranego algorytmu sortowania. Zaimplementowano kilka popularniejszych algorytmów:
-	- bubble sort,
-	- selection sort,
-	- insertion sort,
-	- merge sort,
-	- quick sort (w wersji obierającej skrajnie prawy element na pivot)
-	- quick sort (w wersji obierającej losowy element na pivot)
-	- heap sort
-	- shell sort
-	- counting sort
+
+ - bubble sort,
+ - selection sort,
+ - insertion sort,
+ - merge sort,
+ - quick sort (w wersji obierającej skrajnie prawy element na pivot)
+ - quick sort (w wersji obierającej losowy element na pivot)
+ - heap sort
+ - shell sort
+ - counting sort
+
+## Kompilacja
+Aby skompilować program należy wykonać polecenie make
+```bash
+$ make
+```
+Po kompilacji program będzie dostępny jako plik o nazwie **sorter**
 
 ## Obsługa
 Uruchamiając program, trzeba podać nazwę algorytmu sortującego jako argument (lista odpowiednich nazw-identyfikatorów będzie dostępna, gdy uruchomimy program bez podawania jakiegokolwiek argumentu).
