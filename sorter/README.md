@@ -13,14 +13,18 @@ Program sortujący dane przy pomocy wybranego algorytmu sortowania. Zaimplemento
 
 ## Kompilacja
 Aby skompilować program należy wykonać polecenie make
+
 ```bash
 $ make
 ```
+
 Po kompilacji program będzie dostępny jako plik o nazwie **sorter**
 
 ## Obsługa
 Uruchamiając program, trzeba podać nazwę algorytmu sortującego jako argument (lista odpowiednich nazw-identyfikatorów będzie dostępna, gdy uruchomimy program bez podawania jakiegokolwiek argumentu).
-Następnie na wejście należy podać ciąg liczb całkowitych, rozdzielonych białymi znakami. Ciąg ten terminowany jest przez EOF - można więc po prostu dane umieścić w pliku i przekierować na jako standardowe wejście. Posortowane liczby zostaną wypisane na standardowe wyjście
+
+Następnie na wejście należy podać ciąg liczb całkowitych, rozdzielonych białymi znakami. Ciąg ten terminowany jest przez EOF - można więc po prostu dane umieścić w pliku i przekierować na jako standardowe wejście. Posortowane liczby zostaną wypisane na standardowe wyjście.
+
 Przykład:
 ```bash
 $ ./sorter quick-rand < input.txt > output.txt

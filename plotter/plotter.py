@@ -3,7 +3,6 @@
 import sys
 import json
 import matplotlib.pyplot as pyplot
-import scipy.ndimage.filters
 
 COLORS = 'bgrcmyk'
 
@@ -35,8 +34,8 @@ def main():
 				averageInterval = (sum(intervals) - min(intervals) - max(intervals)) / (len(intervals) - 2)
 				x.append(size)
 				y.append(averageInterval)
-
-			pyplot.plot(x, scipy.ndimage.filters.gaussian_filter(y, 1), COLORS[index] + '--', label=appName)
+			
+			pyplot.plot(x, y, COLORS[index] + '--', label=appName)
 		
 		pyplot.legend(loc="upper left")
 		pyplot.show()
