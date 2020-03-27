@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-pandoc sprawozdanie.md -s -H head.tex -o output.pdf
+pandoc sprawozdanie.md -s -H head.tex -o sprawozdanie.pdf
