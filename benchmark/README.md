@@ -33,7 +33,7 @@ Plik ten jest w formacie JSON. Poniżej znajduje się przykładowa treść takie
 			"repeats": 10,
 			"generate_function": "costant",
 			"applications": [
-				{ "name": "bubble", "command": "./sorter/sorter bubble benchmark" },
+				{ "name": "bubble", "command": "./sorter/sorter bubble benchmark", "external_timer": true },
 				{ "name": "selection", "command": "./sorter/sorter selection benchmark" },
 			]
 		}
@@ -48,7 +48,7 @@ Każdy obiekt posiada taki sam zestaw pól (na chwilę obecną nie ma żadnych d
  - size_range - zawiera obiekt, który definiuje wielkości danych, na jakich bedą wykonywane testy (rosną one liniowo). Pole "start" określa wartość początkową, pole "step" określa przyrost przy każdej kolejnej wielkości danych, a pole "count" liczbę różnych wielkości danych. Na przykładzie pokazanym powyżej, w teście "Rozkład losowy" programy będą testowane na danych o rozmiarach, kolejno: 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 10000.
  - repeats - określa ile razy zostanie powtórzony taki sam test, dla tego samego programu i dla takiej samej wielkości danych. Większa liczba pozwala zminimalizować wpływ czynników losowych na wyniki testów (wyniki poszczególnych powtórzeń mogą zostać uśrednione), ale wydłuża znacznie czas wykonywania testów.
  - generate_function - określa funkcję, która generuje dane o zadanej wielkości. Na chwilę obecną dostępne są: random, constant, ascending, descending, a-shape
- - applications - tablica zawierająca obiekty, które definiują programy poddawane testowi. Pole name określa nazwę, która pojawi się w wynikach i będzie identyfikowała program. Pole command natomiast definiuje komendę, którą skrypt *benchmark* będzie wykonywał w celu przetestowania programu.
+ - applications - tablica zawierająca obiekty, które definiują programy poddawane testowi. Pole name określa nazwę, która pojawi się w wynikach i będzie identyfikowała program. Pole command natomiast definiuje komendę, którą skrypt *benchmark* będzie wykonywał w celu przetestowania programu. Może również wystąpić opcjonalne pole typu bool `external_timer`. Jeżeli nie wystąpi, skrypt dokonuje pomiaru samodzielnie. Jeżeli wystąpi, za pomiar odpowiedzialny jest testowany program. Musi on wypisać wynik w postaci liczby zmiennoprzecinkowej na stdout.
 
 ## Obsługa
 Po przygotowaniu pliku konfiguracyjnego można przystąpić do uruchomienia testów. Należy uzbroić się w cierpliwość, gdyż w zależności od ilości testów, rozmiaru danych, dobranych algorytmów itd. może to potrwać długo lub bardzo długo.

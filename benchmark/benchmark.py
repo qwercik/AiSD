@@ -55,14 +55,16 @@ def main():
 					
 
 					startTime = time.time()
-					subprocess.check_output(
+					externalTimerResult = subprocess.check_output(
 						app['command'].split(),
 						input=inputData	
 					)
 					endTime = time.time()
 					
 					interval = endTime - startTime
-					results['tests'][testName][appName][currentSize].append(interval)
+
+					measuredTime = float(externalTimerResult) if app.get('external_timer', False) else interval
+					results['tests'][testName][appName][currentSize].append(measuredTime)
 
 				saveResults(results, resultsFilename)
 
