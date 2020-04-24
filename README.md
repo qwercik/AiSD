@@ -11,4 +11,6 @@ Poniżej znajdują się skrócone informacje na temat poszczególnych skryptów 
  - plotter - skrypt służący do przedstawiania wyników benchmarków na wykresie
  - tester - bardzo prosty skrypt służący do testowania poprawności algorytmów sortujących
  - sorter - program stanowiący zbiór algorytmów sortujących
+ - trees - program implementujący podstawowe drzewa binarne: BST i AVL
  - results - katalog z kilkoma wynikami testów - można je sobie wyświetlić przy pomocy skryptu plotter
+ - sprawozdania - katalog zawierający kody LaTeX/Markdown sprawozdań wraz z wersjami skompilowanymi do pdf
