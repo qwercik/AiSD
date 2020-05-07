@@ -1,10 +1,10 @@
 #include <iostream>
 #include <memory>
 #include <graphs/Graph.hpp>
-#include <graphs/UndirectedAdjacencyListGraph.hpp>
+#include <graphs/UndirectedIncidenceMatrixGraph.hpp>
 
 int main() {
-	std::unique_ptr<Graph> graph(new UndirectedAdjacencyListGraph(5));
+	std::unique_ptr<Graph> graph(new UndirectedIncidenceMatrixGraph(5));
 	graph->addEdge(0, 1);
 	graph->addEdge(0, 2);
 	graph->addEdge(0, 3);
@@ -15,6 +15,6 @@ int main() {
 	graph->addEdge(2, 3);
 	graph->addEdge(2, 4);
 	graph->addEdge(3, 4);
-	
+
 	std::cout << *graph;
 }

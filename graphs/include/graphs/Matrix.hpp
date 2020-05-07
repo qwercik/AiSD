@@ -41,7 +41,7 @@ public:
         return columns;
     }
 
-private:
+protected:
     inline std::size_t getIndex(std::size_t row, std::size_t column) const {
         return row * columns + column;
     }
