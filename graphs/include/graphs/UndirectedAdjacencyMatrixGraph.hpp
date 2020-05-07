@@ -20,9 +20,9 @@ public:
         matrix.decrement(endVertex, startVertex);
     }
 
-    virtual bool containsEdge(int startVertice, int endVertice) const override {
+    virtual bool containsEdge(int startVertex, int endVertex) const override {
         // We assumes integrity of adjacency matrix
-        return matrix.get(startVertice, endVertice) > 0;
+        return matrix.get(startVertex, endVertex) > 0;
     }
 
     virtual void print(std::ostream& stream) const override {

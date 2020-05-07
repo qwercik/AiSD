@@ -18,8 +18,8 @@ public:
         matrix.decrement(startVertex, endVertex);
     }
 
-    virtual bool containsEdge(int startVertice, int endVertice) const override {
-        return matrix.get(startVertice, endVertice) > 0;
+    virtual bool containsEdge(int startVertex, int endVertex) const override {
+        return matrix.get(startVertex, endVertex) > 0;
     }
 
     virtual void print(std::ostream& stream) const override {
