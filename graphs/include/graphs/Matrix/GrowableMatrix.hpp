@@ -5,7 +5,7 @@
 #include <iostream>
 #include <algorithm>
 
-#include <graphs/Matrix.hpp>
+#include <graphs/Matrix/Matrix.hpp>
 
 
 // Due to simplicity
