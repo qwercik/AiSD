@@ -21,6 +21,14 @@ bool DirectedAdjacencyMatrixGraph::containsEdge(int startVertex, int endVertex) 
     return matrix.get(startVertex, endVertex) > 0;
 }
 
-void DirectedAdjacencyMatrixGraph::print(std::ostream& stream) const {
-    stream << matrix;
+std::list<int> DirectedAdjacencyMatrixGraph::getAdjacentVertices(int vertex) const {
+    std::list<int> vertices;
+    for (int i = 0; i < verticesNumber; ++i) {
+        auto count = matrix.get(vertex, i);
+        for (int j = 0; j < count; ++j) {
+            vertices.push_back(i);
+        }
+    }
+
+    return vertices;
 }

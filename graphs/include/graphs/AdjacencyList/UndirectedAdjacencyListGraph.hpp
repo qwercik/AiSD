@@ -14,9 +14,9 @@ public:
 
     virtual void addEdge(int startVertex, int endVertex) override;
     virtual void removeEdge(int startVertex, int endVertex) override;
+    
     virtual bool containsEdge(int startVertex, int endVertex) const override;
-
-    virtual void print(std::ostream& stream) const override;
+    virtual std::list<int> getAdjacentVertices(int vertex) const override;
 
 protected:
     std::vector<std::list<int>> lists;

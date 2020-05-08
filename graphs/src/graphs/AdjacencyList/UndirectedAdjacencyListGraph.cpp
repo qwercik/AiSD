@@ -29,8 +29,6 @@ bool UndirectedAdjacencyListGraph::containsEdge(int startVertex, int endVertex) 
     return std::find(current.begin(), current.end(), endVertex) != current.end();
 }
 
-void UndirectedAdjacencyListGraph::print(std::ostream& stream) const {
-    for (std::size_t i = 0; i < this->verticesNumber; ++i) {
-        stream << "Vertex nr " << i << ": " << lists[i] << '\n';
-    }
+std::list<int> UndirectedAdjacencyListGraph::getAdjacentVertices(int vertex) const {
+    return lists[vertex];
 }

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <list>
 
 #include <graphs/Graph.hpp>
 #include <graphs/Matrix/GrowableMatrix.hpp>
@@ -26,8 +27,20 @@ bool UndirectedIncidenceMatrixGraph::containsEdge(int startVertex, int endVertex
     return findEdgeRow(startVertex, endVertex) != -1;
 }
 
-void UndirectedIncidenceMatrixGraph::print(std::ostream& stream) const {
-    stream << matrix;
+std::list<int> UndirectedIncidenceMatrixGraph::getAdjacentVertices(int vertex) const {
+    std::list<int> vertices;
+    for (int i = 0; i < matrix.getRows(); ++i) {
+        if (matrix.get(i, vertex) == 1) {
+            int incidentVertex = 0;
+            while (matrix.get(i, incidentVertex) != 1 || incidentVertex == vertex) {
+                incidentVertex++;
+            }
+
+            vertices.push_back(incidentVertex);
+        }
+    }
+
+    return vertices;
 }
 
 int UndirectedIncidenceMatrixGraph::findEdgeRow(int startVertex, int endVertex) const {

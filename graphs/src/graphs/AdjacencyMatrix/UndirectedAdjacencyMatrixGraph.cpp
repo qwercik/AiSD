@@ -24,6 +24,15 @@ bool UndirectedAdjacencyMatrixGraph::containsEdge(int startVertex, int endVertex
     return matrix.get(startVertex, endVertex) > 0;
 }
 
-void UndirectedAdjacencyMatrixGraph::print(std::ostream& stream) const {
-    stream << matrix;
+std::list<int> UndirectedAdjacencyMatrixGraph::getAdjacentVertices(int vertex) const {
+    // We assumes integrity of adjacency matrix
+    std::list<int> vertices;
+    for (int i = 0; i < verticesNumber; ++i) {
+        auto count = matrix.get(vertex, i);
+        for (int j = 0; j < count; ++j) {
+            vertices.push_back(i);
+        }
+    }
+
+    return vertices;
 }
