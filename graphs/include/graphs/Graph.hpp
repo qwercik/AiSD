@@ -1,11 +1,14 @@
 #pragma once
 
+#include <iostream>
 #include <cstddef>
 #include <list>
 
 class Graph {
 public:
     Graph(std::size_t verticesNumber);
+
+    std::size_t getVerticesNumber() const;
 
     virtual void addEdge(int startVertex, int endVertex) = 0;
     virtual void removeEdge(int startVertex, int endVertex) = 0;

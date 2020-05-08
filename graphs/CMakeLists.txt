@@ -12,4 +12,6 @@ add_executable(
     src/graphs/AdjacencyMatrix/UndirectedAdjacencyMatrixGraph.cpp
     src/graphs/AdjacencyList/DirectedAdjacencyListGraph.cpp
     src/graphs/AdjacencyList/UndirectedAdjacencyListGraph.cpp
+    src/graphs/Search/BreadthFirstSearch.cpp
+    src/graphs/Search/DeepFirstSearch.cpp
 )

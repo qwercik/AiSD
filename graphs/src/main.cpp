@@ -7,6 +7,8 @@
 #include <graphs/AdjacencyList/UndirectedAdjacencyListGraph.hpp>
 #include <graphs/IncidenceMatrix/DirectedIncidenceMatrixGraph.hpp>
 #include <graphs/IncidenceMatrix/UndirectedIncidenceMatrixGraph.hpp>
+#include <graphs/Search/Search.hpp>
+#include <graphs/Search/BreadthFirstSearch.hpp>
 
 int main() {
 	std::unique_ptr<Graph> graph(new UndirectedIncidenceMatrixGraph(7));
@@ -20,4 +22,7 @@ int main() {
 	graph->addEdge(6, 5);
 
 	std::cout << *graph;
+
+	std::unique_ptr<Search> searcher(new BreadthFirstSearch);
+	std::cout << searcher->search(*graph, 1) << '\n';
 }

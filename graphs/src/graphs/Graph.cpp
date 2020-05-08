@@ -8,6 +8,10 @@ Graph::Graph(std::size_t verticesNumber) {
     this->verticesNumber = verticesNumber;
 }
 
+std::size_t Graph::getVerticesNumber() const {
+    return this->verticesNumber;
+}
+
 void Graph::print(std::ostream& stream) const {
     for (int i = 0; i < verticesNumber; ++i) {
         stream << "[" << i << "]: " << getAdjacentVertices(i) << '\n';
