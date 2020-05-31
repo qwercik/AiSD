@@ -1,12 +1,12 @@
 #include <iostream>
 #include <list>
 
-#include <graphs/Graph.hpp>
+#include <graphs/UndirectedGraph.hpp>
 #include <graphs/Matrix/GrowableMatrix.hpp>
 #include <graphs/IncidenceMatrix/UndirectedIncidenceMatrixGraph.hpp>
 
 UndirectedIncidenceMatrixGraph::UndirectedIncidenceMatrixGraph(std::size_t verticesNumber) :
-    Graph(verticesNumber),
+    UndirectedGraph(verticesNumber),
     matrix(0, verticesNumber)
 {}
 

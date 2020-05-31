@@ -3,14 +3,14 @@
 #include <vector>
 #include <list>
 
-#include <graphs/Graph.hpp>
+#include <graphs/DirectedGraph.hpp>
 #include <graphs/AdjacencyList/DirectedAdjacencyListGraph.hpp>
 #include <graphs/Matrix/Matrix.hpp>
 #include <graphs/io.hpp>
 
 
 DirectedAdjacencyListGraph::DirectedAdjacencyListGraph(std::size_t verticesNumber) :
-    Graph(verticesNumber),
+    DirectedGraph(verticesNumber),
     lists(verticesNumber, std::list<int>())
 {}
 

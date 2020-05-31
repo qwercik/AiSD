@@ -1,11 +1,11 @@
 #include <iostream>
 
-#include <graphs/Graph.hpp>
+#include <graphs/UndirectedGraph.hpp>
 #include <graphs/Matrix/Matrix.hpp>
 #include <graphs/AdjacencyMatrix/UndirectedAdjacencyMatrixGraph.hpp>
 
 UndirectedAdjacencyMatrixGraph::UndirectedAdjacencyMatrixGraph(std::size_t verticesNumber) :
-    Graph(verticesNumber),
+    UndirectedGraph(verticesNumber),
     matrix(verticesNumber, verticesNumber)
 {}
 

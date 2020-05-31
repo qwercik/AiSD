@@ -1,12 +1,12 @@
 #include <iostream>
 #include <list>
 
-#include <graphs/Graph.hpp>
+#include <graphs/DirectedGraph.hpp>
 #include <graphs/Matrix/GrowableMatrix.hpp>
 #include <graphs/IncidenceMatrix/DirectedIncidenceMatrixGraph.hpp>
 
 DirectedIncidenceMatrixGraph::DirectedIncidenceMatrixGraph(std::size_t verticesNumber) :
-    Graph(verticesNumber),
+    DirectedGraph(verticesNumber),
     matrix(0, verticesNumber)
 {}
 

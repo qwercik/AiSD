@@ -3,13 +3,13 @@
 #include <vector>
 #include <list>
 
-#include <graphs/Graph.hpp>
+#include <graphs/UndirectedGraph.hpp>
 #include <graphs/AdjacencyList/UndirectedAdjacencyListGraph.hpp>
 #include <graphs/Matrix/Matrix.hpp>
 #include <graphs/io.hpp>
 
 UndirectedAdjacencyListGraph::UndirectedAdjacencyListGraph(std::size_t verticesNumber) :
-    Graph(verticesNumber),
+    UndirectedGraph(verticesNumber),
     lists(verticesNumber, std::list<int>())
 {}
 

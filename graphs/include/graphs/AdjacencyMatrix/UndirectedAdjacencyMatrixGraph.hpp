@@ -2,10 +2,10 @@
 
 #include <list>
 
-#include <graphs/Graph.hpp>
+#include <graphs/UndirectedGraph.hpp>
 #include <graphs/Matrix/Matrix.hpp>
 
-class UndirectedAdjacencyMatrixGraph : public Graph {
+class UndirectedAdjacencyMatrixGraph : public UndirectedGraph {
 public:
     UndirectedAdjacencyMatrixGraph(std::size_t verticesNumber);
     

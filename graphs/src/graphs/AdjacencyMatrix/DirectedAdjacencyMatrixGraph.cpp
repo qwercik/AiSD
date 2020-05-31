@@ -1,11 +1,11 @@
 #include <iostream>
 
-#include <graphs/Graph.hpp>
+#include <graphs/DirectedGraph.hpp>
 #include <graphs/Matrix/Matrix.hpp>
 #include <graphs/AdjacencyMatrix/DirectedAdjacencyMatrixGraph.hpp>
 
 DirectedAdjacencyMatrixGraph::DirectedAdjacencyMatrixGraph(std::size_t verticesNumber) :
-    Graph(verticesNumber),
+    DirectedGraph(verticesNumber),
     matrix(verticesNumber, verticesNumber)
 {}
 

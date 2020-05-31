@@ -2,14 +2,14 @@
 
 #include <iostream>
 
-#include <graphs/Graph.hpp>
+#include <graphs/UndirectedGraph.hpp>
 #include <graphs/Matrix/GrowableMatrix.hpp>
 
 // I assume that columns describes each vertex (because its number is constant)
 // and each row describes each edge (because its number can be modified)
 // Adding or removing rows is easier than doing the same for edges
 
-class UndirectedIncidenceMatrixGraph : public Graph {
+class UndirectedIncidenceMatrixGraph : public UndirectedGraph {
 public:
     UndirectedIncidenceMatrixGraph(std::size_t verticesNumber);
 
