@@ -17,6 +17,8 @@ public:
     virtual std::list<int> getSuccessors(int vertex) const = 0;
     virtual std::list<int> getPredecessors(int vertex) const = 0;
 
+    virtual std::size_t maxEdges() const = 0;
+
     void print(std::ostream& stream) const;
 
 protected:

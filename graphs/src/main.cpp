@@ -11,6 +11,7 @@
 #include <graphs/Search/DeepFirstSearch.hpp>
 #include <graphs/Search/BreadthFirstSearch.hpp>
 #include <graphs/TopologicalSort/BreadthFirstSort.hpp>
+#include <graphs/TopologicalSort/DeepFirstSort.hpp>
 #include <graphs/Generator/Generator.hpp>
 
 void test1() {
@@ -48,8 +49,9 @@ void test2() {
 
 	std::cout << graph;
 
-	BreadthFirstSort bfsSort;
-	std::cout << bfsSort.sort(graph) << '\n';
+	// Pamiętać, że sortowanie może modyfikować graf!!!
+	std::cout << (new DeepFirstSort)->sort(graph) << '\n';
+	std::cout << (new BreadthFirstSort)->sort(graph) << '\n';
 }
 
 void test3() {
@@ -64,9 +66,19 @@ void test3() {
 	graph.addEdge(11, 9);
 	graph.addEdge(11, 10);
 
+	std::cout << graph;
+
+	// Pamiętać, że sortowanie może modyfikować graf!!!
+	std::cout << (new DeepFirstSort)->sort(graph) << '\n';
 	std::cout << (new BreadthFirstSort)->sort(graph) << '\n';
 }
 
+void test4() {
+	Generator generator;
+	auto graph = generator.generate<DirectedIncidenceMatrixGraph>(10, 100);
+	std::cout << graph;
+}
+
 int main() {
-	test3();
+	test4();
 }
