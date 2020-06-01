@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <queue>
 #include <vector>
 #include <list>
 
@@ -21,5 +22,15 @@ std::ostream& operator<<(std::ostream& stream, const std::vector<T>& container) 
         stream << el << ' ';
     }
     
+    return stream;
+}
+
+template <typename T>
+std::ostream& operator<<(std::ostream& stream, std::queue<T> queue) {
+    while (!queue.empty()) {
+        stream << queue.front() << ' ';
+        queue.pop();
+    }
+
     return stream;
 }

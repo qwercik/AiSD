@@ -14,6 +14,6 @@ add_executable(
     src/graphs/AdjacencyList/UndirectedAdjacencyListGraph.cpp
     src/graphs/Search/BreadthFirstSearch.cpp
     src/graphs/Search/DeepFirstSearch.cpp
-    src/graphs/TopologicalSorting/BreadthFirstSorting.cpp
-    src/graphs/TopologicalSorting/DeepFirstSorting.cpp
+    src/graphs/TopologicalSort/BreadthFirstSort.cpp
+    src/graphs/TopologicalSort/DeepFirstSort.cpp
 )

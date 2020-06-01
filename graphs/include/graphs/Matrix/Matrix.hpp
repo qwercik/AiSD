@@ -25,7 +25,7 @@ public:
 
     void decrement(std::size_t row, std::size_t column) {
         auto index = getIndex(row, column);
-        values[index]++;
+        values[index]--;
     }
 
     T get(std::size_t row, std::size_t column) const {

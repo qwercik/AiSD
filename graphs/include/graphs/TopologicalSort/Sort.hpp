@@ -6,5 +6,5 @@
 
 class Sort {
 public:
-    virtual std::list<int> sort(const DirectedGraph& graph) const = 0;
+    virtual std::list<int> sort(DirectedGraph& graph) const = 0;
 };

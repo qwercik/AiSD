@@ -10,9 +10,10 @@
 #include <graphs/Search/Search.hpp>
 #include <graphs/Search/DeepFirstSearch.hpp>
 #include <graphs/Search/BreadthFirstSearch.hpp>
+#include <graphs/TopologicalSort/BreadthFirstSort.hpp>
 #include <graphs/Generator/Generator.hpp>
 
-int main() {
+void test1() {
 	UndirectedIncidenceMatrixGraph graph(10);
 	graph.addEdge(0, 1);
 	graph.addEdge(1, 2);
@@ -30,4 +31,42 @@ int main() {
 
 	DeepFirstSearch dfs;
 	std::cout << "DFS: " << dfs.search(graph) << '\n';
+}
+
+void test2() {
+	DirectedAdjacencyMatrixGraph graph(6);
+	graph.addEdge(0, 2);
+	graph.addEdge(1, 0);
+	graph.addEdge(1, 2);
+	graph.addEdge(3, 0);
+	graph.addEdge(3, 1);
+	graph.addEdge(3, 4);
+	graph.addEdge(4, 1);
+	graph.addEdge(4, 2);
+	graph.addEdge(5, 0);
+	graph.addEdge(5, 4);
+
+	std::cout << graph;
+
+	BreadthFirstSort bfsSort;
+	std::cout << bfsSort.sort(graph) << '\n';
+}
+
+void test3() {
+	DirectedAdjacencyMatrixGraph graph(12);
+	graph.addEdge(7, 11);
+	graph.addEdge(7, 8);
+	graph.addEdge(5, 11);
+	graph.addEdge(3, 8);
+	graph.addEdge(3, 10);
+	graph.addEdge(8, 9);
+	graph.addEdge(11, 2);
+	graph.addEdge(11, 9);
+	graph.addEdge(11, 10);
+
+	std::cout << (new BreadthFirstSort)->sort(graph) << '\n';
+}
+
+int main() {
+	test3();
 }
