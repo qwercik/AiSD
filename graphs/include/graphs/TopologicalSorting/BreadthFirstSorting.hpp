@@ -2,9 +2,9 @@
 
 #include <list>
 
-#include <graphs/Graph.hpp>
+#include <graphs/DirectedGraph.hpp>
 
 class BreadthFirstSorting {
 public:
-    std::list<int> sort(Graph& graph) const;
+    std::list<int> sort(DirectedGraph& graph) const;
 };
