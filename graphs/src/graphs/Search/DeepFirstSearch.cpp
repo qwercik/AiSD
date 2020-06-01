@@ -18,7 +18,7 @@ void DeepFirstSearch::searchBackend(Graph& graph, int currentVertex, std::vector
         searchResult.push_back(currentVertex);
         visitedVertices[currentVertex] = true;
 
-        for (auto v : graph.getAdjacentVertices(currentVertex)) {
+        for (auto v : graph.getSuccessors(currentVertex)) {
             searchBackend(graph, v, visitedVertices, searchResult);
         }
     }

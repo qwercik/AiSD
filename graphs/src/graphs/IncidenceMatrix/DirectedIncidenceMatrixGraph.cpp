@@ -27,20 +27,36 @@ bool DirectedIncidenceMatrixGraph::containsEdge(int startVertex, int endVertex) 
     return findEdgeRow(startVertex, endVertex) != -1;
 }
 
-std::list<int> DirectedIncidenceMatrixGraph::getAdjacentVertices(int vertex) const {
-    std::list<int> vertices;
+std::list<int> DirectedIncidenceMatrixGraph::getSuccessors(int vertex) const {
+    std::list<int> successors;
     for (int i = 0; i < matrix.getRows(); ++i) {
         if (matrix.get(i, vertex) == 1) {
-            int incidentVertex = 0;
-            while (matrix.get(i, incidentVertex) != -1) {
-                incidentVertex++;
+            int successor = 0;
+            while (matrix.get(i, successor) != -1) {
+                successor++;
             }
 
-            vertices.push_back(incidentVertex);
+            successors.push_back(successor);
         }
     }
 
-    return vertices;
+    return successors;
+}
+
+std::list<int> DirectedIncidenceMatrixGraph::getPredecessors(int vertex) const {
+    std::list<int> predecessors;
+    for (int i = 0; i < matrix.getRows(); ++i) {
+        if (matrix.get(i, vertex) == -1) {
+            int predecessor = 0;
+            while (matrix.get(i, predecessor) != 1) {
+                predecessor++;
+            }
+
+            predecessors.push_back(predecessor);
+        }
+    }
+
+    return predecessors;
 }
 
 int DirectedIncidenceMatrixGraph::findEdgeRow(int startVertex, int endVertex) const {

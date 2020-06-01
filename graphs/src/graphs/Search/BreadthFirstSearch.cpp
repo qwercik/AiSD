@@ -20,7 +20,7 @@ std::list<int> BreadthFirstSearch::search(Graph& graph, int startVertex) const {
             visitedVertices[currentVertex] = true;
             searchResult.push_back(currentVertex);
 
-            for (auto v : graph.getAdjacentVertices(currentVertex)) {
+            for (auto v : graph.getSuccessors(currentVertex)) {
                 if (!visitedVertices[v]) {
                     adjacentVertices.push(v);
                 }

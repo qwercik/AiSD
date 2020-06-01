@@ -14,7 +14,8 @@ public:
     virtual void removeEdge(int startVertex, int endVertex) = 0;
 
     virtual bool containsEdge(int startVertex, int endVertex) const = 0;
-    virtual std::list<int> getAdjacentVertices(int vertex) const = 0;
+    virtual std::list<int> getSuccessors(int vertex) const = 0;
+    virtual std::list<int> getPredecessors(int vertex) const = 0;
 
     void print(std::ostream& stream) const;
 

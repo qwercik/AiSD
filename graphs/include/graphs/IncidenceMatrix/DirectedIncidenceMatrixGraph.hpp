@@ -17,7 +17,9 @@ public:
     virtual void removeEdge(int startVertex, int endVertex) override;
     
     virtual bool containsEdge(int startVertex, int endVertex) const override;
-    virtual std::list<int> getAdjacentVertices(int vertex) const override;
+    virtual std::list<int> getSuccessors(int vertex) const override;
+    virtual std::list<int> getPredecessors(int vertex) const override;
+
 private:
     int findEdgeRow(int startVertex, int endVertex) const;
 

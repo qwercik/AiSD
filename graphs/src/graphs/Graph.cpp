@@ -14,7 +14,7 @@ std::size_t Graph::getVerticesNumber() const {
 
 void Graph::print(std::ostream& stream) const {
     for (int i = 0; i < verticesNumber; ++i) {
-        stream << "[" << i << "]: " << getAdjacentVertices(i) << '\n';
+        stream << "[" << i << "]: " << getSuccessors(i) << '\n';
     }
 }
 

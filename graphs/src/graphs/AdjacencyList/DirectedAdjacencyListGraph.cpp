@@ -27,6 +27,19 @@ bool DirectedAdjacencyListGraph::containsEdge(int startVertex, int endVertex) co
     return std::find(current.begin(), current.end(), endVertex) != current.end();
 }
 
-std::list<int> DirectedAdjacencyListGraph::getAdjacentVertices(int vertex) const {
+std::list<int> DirectedAdjacencyListGraph::getSuccessors(int vertex) const {
     return lists[vertex];
+}
+
+std::list<int> DirectedAdjacencyListGraph::getPredecessors(int vertex) const {
+    std::list<int> predecessorsList;
+    for (int i = 0; i < lists.size(); ++i) {
+        auto vertexSuccessors = lists[i];
+        auto iterator = std::find(vertexSuccessors.begin(), vertexSuccessors.end(), vertex);
+        if (iterator != vertexSuccessors.end()) {
+            predecessorsList.push_back(vertex);
+        }
+    }
+
+    return predecessorsList;
 }

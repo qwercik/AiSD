@@ -24,8 +24,7 @@ bool UndirectedAdjacencyMatrixGraph::containsEdge(int startVertex, int endVertex
     return matrix.get(startVertex, endVertex) > 0;
 }
 
-std::list<int> UndirectedAdjacencyMatrixGraph::getAdjacentVertices(int vertex) const {
-    // We assumes integrity of adjacency matrix
+std::list<int> UndirectedAdjacencyMatrixGraph::getSuccessors(int vertex) const {
     std::list<int> vertices;
     for (int i = 0; i < verticesNumber; ++i) {
         auto count = matrix.get(vertex, i);
@@ -35,4 +34,10 @@ std::list<int> UndirectedAdjacencyMatrixGraph::getAdjacentVertices(int vertex) c
     }
 
     return vertices;
+}
+
+std::list<int> UndirectedAdjacencyMatrixGraph::getPredecessors(int vertex) const {
+    // We assumes integrity of adjacency matrix
+    // For unordered graph list of successors and predecessors should be the same
+    return getSuccessors(vertex);
 }

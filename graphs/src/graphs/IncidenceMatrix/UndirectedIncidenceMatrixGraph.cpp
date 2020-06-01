@@ -27,7 +27,7 @@ bool UndirectedIncidenceMatrixGraph::containsEdge(int startVertex, int endVertex
     return findEdgeRow(startVertex, endVertex) != -1;
 }
 
-std::list<int> UndirectedIncidenceMatrixGraph::getAdjacentVertices(int vertex) const {
+std::list<int> UndirectedIncidenceMatrixGraph::getSuccessors(int vertex) const {
     std::list<int> vertices;
     for (int i = 0; i < matrix.getRows(); ++i) {
         if (matrix.get(i, vertex) == 1) {
@@ -41,6 +41,11 @@ std::list<int> UndirectedIncidenceMatrixGraph::getAdjacentVertices(int vertex) c
     }
 
     return vertices;
+}
+
+std::list<int> UndirectedIncidenceMatrixGraph::getPredecessors(int vertex) const {
+    // Successors and predecessors should be the same
+    return getSuccessors(vertex);
 }
 
 int UndirectedIncidenceMatrixGraph::findEdgeRow(int startVertex, int endVertex) const {
