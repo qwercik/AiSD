@@ -35,11 +35,11 @@ public:
         int currentVertex = 0;
 
         while (path.size() != edgesNumber + 1) {
-            std::cerr << "[DBG] path = " << path << "| current = " << currentVertex << '\n';
-
-            // Czy powinno to dziać się także dla głębszych wierzchołków?
             while (currentVertex == graph.getVerticesNumber()) {
-                std::cerr << "[DBG] wywołałem się\n";
+                if (path.size() < 2) {
+                    return false;
+                }
+
                 currentVertex = path.back();
                 path.pop_back();
                 graph.removeEdge(path.back(), currentVertex);
@@ -47,10 +47,7 @@ public:
                 currentVertex++;
             }
 
-            std::cerr << "[DBG] path.size() = " << path.size() << " | [DBG] path.empty() = " << path.empty() << "\n";
-
             if (path.empty()) {
-                std::cerr << "Uwaga, kończem!\n";
                 return false;
             }
 
@@ -58,16 +55,17 @@ public:
                 if (path.back() != 0 && !graph.containsEdge(path.back(), 0)) {
                     graph.addEdge(path.back(), 0);
                     path.push_back(0);
-                    // niepotrzebne, bo zaraz się skończy pętla
-                    // ale do unifikacji spoko
+
                     currentVertex = 0;
-                } else {
-                    // czy tu trzeba usunąć krawędź?
+                } else if (path.size() >= 2) {
+
                     currentVertex = path.back();
                     path.pop_back();
                     graph.removeEdge(path.back(), currentVertex);
 
                     currentVertex++;
+                } else {
+                    return false;
                 }
             } else {
                 if (path.back() != currentVertex && !graph.containsEdge(path.back(), currentVertex)) {
