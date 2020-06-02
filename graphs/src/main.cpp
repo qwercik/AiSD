@@ -79,6 +79,18 @@ void test4() {
 	std::cout << graph;
 }
 
-int main() {
-	test4();
+void test5(int n, int e) {
+	Generator gen;
+	UndirectedIncidenceMatrixGraph graph(n);
+	auto res = gen.fillEuler(graph, e);
+	std::cout << graph;
+	std::cout << "Wynik -> " << (res ? "ok" : "fail")<< '\n';
+}
+
+int main(int argc, char *argv[]) {
+	if (argc != 3) {
+		std::cerr << "Błąd użycia\n";
+	} else {
+		test5(std::stoi(argv[1]), std::stoi(argv[2]));
+	}
 }
