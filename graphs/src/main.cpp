@@ -104,6 +104,36 @@ void test6(int n, int s) {
 	}
 }
 
+void test7(int n) {
+	UndirectedAdjacencyMatrixGraph graph(n);
+	int p, s;
+	while (std::cin >> p >> s) {
+		graph.addEdge(p, s);
+	}
+
+	std::cout << graph << '\n';
+
+	HamiltonCycleFind ham;
+	auto path = ham.find(graph);
+	std::cout << '\n';
+
+	if (path.size() == 0) {
+		std::cout << "Graf nie jest grafem Hamiltona\n";
+	} else {
+		std::cout << "Graf jest grafem Hamiltona: " << path << "0\n";
+	}
+}
+
+int main(int argc, char *argv[]) {
+	if (argc != 2) {
+		std::cerr << "Błąd użycia\n";
+	} else {
+		test7(std::stoi(argv[1]));
+	}
+}
+
+
+/*
 int main(int argc, char *argv[]) {
 	if (argc != 3) {
 		std::cerr << "Błąd użycia\n";
@@ -111,3 +141,4 @@ int main(int argc, char *argv[]) {
 		test6(std::stoi(argv[1]), std::stoi(argv[2]));
 	}
 }
+*/

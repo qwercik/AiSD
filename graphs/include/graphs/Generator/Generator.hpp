@@ -1,6 +1,7 @@
 #pragma once
 
 #include <list>
+#include <cstdlib>
 
 #include <graphs/Graph.hpp>
 #include <graphs/UndirectedGraph.hpp>
@@ -76,12 +77,22 @@ public:
 
         // edges should >= verticesNumber
         int edges = graph.maxEdges() * (saturationPercents / 100.);
-
+        
+        std::vector<bool> visited(verticesNumber, false);
+        int predecessor = 0;
+        visited[predecessor] = true;
         for (int i = 0; i < verticesNumber - 1; ++i) {
-            graph.addEdge(i, i + 1);
+            int successor;
+            do {
+                successor = rand() % verticesNumber;
+            } while (visited[successor]);
+            visited[successor] = true;
+            //std::cerr << "[DBG] dodaję krawędź " << predecessor << " -> " << successor << '\n';
+            graph.addEdge(predecessor, successor);
+            predecessor = successor;
         }
 
-        graph.addEdge(verticesNumber - 1, 0);
+        graph.addEdge(predecessor, 0);
         fillRandom(graph, edges - verticesNumber);
         return graph;
     }
