@@ -6,5 +6,5 @@
 
 class CycleFind {
 public:
-    virtual std::list<int> find(UndirectedGraph& graph) const = 0;
+    virtual std::list<int> find() = 0;
 };

@@ -93,17 +93,24 @@ void test6(int n, int s) {
 	auto graph = gen.generateHamilton<UndirectedAdjacencyMatrixGraph>(n, s);
 	std::cout << graph;
 	
-	HamiltonCycleFind ham;
-	auto path = ham.find(graph);
-	std::cout << '\n';
-
-	if (path.size() == 0) {
-		std::cout << "Graf nie jest grafem Hamiltona\n";
-	} else {
-		std::cout << "Graf jest grafem Hamiltona: " << path << "0\n";
+	HamiltonCycleFind ham(graph);
+	std::list<int> l;
+	while ((l = ham.find()).size() != 0) {
+		std::cout << l << '\n';
+		/*
+		std::cout << "\n!!! Znaleziono cykl: " << l << '\n';
+		std::cout << "Kontynuować?";
+		int i;
+		std::cin >> i;
+		if (i == 0) {
+			break;
+		}
+		*/
+		//std::cout << '\n';
 	}
 }
 
+/*
 void test7(int n) {
 	UndirectedAdjacencyMatrixGraph graph(n);
 	int p, s;
@@ -113,8 +120,8 @@ void test7(int n) {
 
 	std::cout << graph << '\n';
 
-	HamiltonCycleFind ham;
-	auto path = ham.find(graph);
+	HamiltonCycleFind ham(graph);
+	auto path = ham.find();
 	std::cout << '\n';
 
 	if (path.size() == 0) {
@@ -123,7 +130,7 @@ void test7(int n) {
 		std::cout << "Graf jest grafem Hamiltona: " << path << "0\n";
 	}
 }
-
+*/
 /*
 int main(int argc, char *argv[]) {
 	if (argc != 2) {
