@@ -13,6 +13,7 @@
 #include <graphs/TopologicalSort/BreadthFirstSort.hpp>
 #include <graphs/TopologicalSort/DeepFirstSort.hpp>
 #include <graphs/Generator/Generator.hpp>
+#include <graphs/CycleFind/HamiltonCycleFind.hpp>
 
 void test1() {
 	UndirectedIncidenceMatrixGraph graph(10);
@@ -82,15 +83,31 @@ void test4() {
 void test5(int n, int e) {
 	Generator gen;
 	UndirectedIncidenceMatrixGraph graph(n);
-	auto res = gen.fillEuler(graph, e);
+	auto res = gen.fillEulerBruteForce(graph, e);
 	std::cout << graph;
 	std::cout << "Wynik -> " << (res ? "ok" : "fail")<< '\n';
+}
+
+void test6(int n, int s) {
+	Generator gen;
+	auto graph = gen.generateHamilton<UndirectedAdjacencyMatrixGraph>(n, s);
+	std::cout << graph;
+	
+	HamiltonCycleFind ham;
+	auto path = ham.find(graph);
+	std::cout << '\n';
+
+	if (path.size() == 0) {
+		std::cout << "Graf nie jest grafem Hamiltona\n";
+	} else {
+		std::cout << "Graf jest grafem Hamiltona: " << path << "0\n";
+	}
 }
 
 int main(int argc, char *argv[]) {
 	if (argc != 3) {
 		std::cerr << "Błąd użycia\n";
 	} else {
-		test5(std::stoi(argv[1]), std::stoi(argv[2]));
+		test6(std::stoi(argv[1]), std::stoi(argv[2]));
 	}
 }

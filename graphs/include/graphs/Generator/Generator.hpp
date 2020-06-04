@@ -29,7 +29,64 @@ public:
         return graph;
     }
 
-    bool fillEuler(UndirectedGraph& graph, int edgesNumber) {
+        // Edges should not be bigger then graph.maxEdges()
+    void fillRandom(Graph& graph, int edges) {
+        int verticesNumber = graph.getVerticesNumber();
+
+        while (edges > 0) {
+            int startVertex = rand() % verticesNumber;
+            int endVertex = rand() % verticesNumber;
+            
+            if (startVertex != endVertex && !graph.containsEdge(startVertex, endVertex)) {
+                graph.addEdge(startVertex, endVertex);
+                edges--;
+            }
+        }
+    }
+
+
+    // Only for n >= 4
+    template <bool directed = false>
+    void fill(Graph& graph, int edges) {
+        int verticesNumber = graph.getVerticesNumber();
+        int startVertex = 0;
+        int endVertex = 0;
+
+        for (int i = 0; i < edges; ++i) {
+            if (startVertex == endVertex) {
+                endVertex++;
+            }
+
+            if (endVertex == verticesNumber) {
+                startVertex++;
+                endVertex = directed ? 0 : startVertex + 1;
+            }
+
+            graph.addEdge(startVertex, endVertex);
+            endVertex++;
+        }
+    }
+
+
+    // Saturation percents should be enough!!!
+    // TODO: calculate minimum satuartion and raise exception in case of problems
+    template <typename T>
+    T generateHamilton(int verticesNumber, int saturationPercents = 50) {
+        T graph(verticesNumber);
+
+        // edges should >= verticesNumber
+        int edges = graph.maxEdges() * (saturationPercents / 100.);
+
+        for (int i = 0; i < verticesNumber - 1; ++i) {
+            graph.addEdge(i, i + 1);
+        }
+
+        graph.addEdge(verticesNumber - 1, 0);
+        fillRandom(graph, edges - verticesNumber);
+        return graph;
+    }
+
+    bool fillEulerBruteForce(UndirectedGraph& graph, int edgesNumber) {
         std::list<int> path;
         path.push_back(0);
         int currentVertex = 0;
