@@ -124,16 +124,16 @@ void test7(int n) {
 	}
 }
 
+/*
 int main(int argc, char *argv[]) {
 	if (argc != 2) {
 		std::cerr << "Błąd użycia\n";
 	} else {
 		test7(std::stoi(argv[1]));
 	}
-}
+}*/
 
 
-/*
 int main(int argc, char *argv[]) {
 	if (argc != 3) {
 		std::cerr << "Błąd użycia\n";
@@ -141,4 +141,3 @@ int main(int argc, char *argv[]) {
 		test6(std::stoi(argv[1]), std::stoi(argv[2]));
 	}
 }
-*/

@@ -31,9 +31,7 @@ public:
     }
 
         // Edges should not be bigger then graph.maxEdges()
-    void fillRandom(Graph& graph, int edges) {
-        int verticesNumber = graph.getVerticesNumber();
-
+    void fillRandom(Graph& graph, int verticesNumber, int edges) {
         while (edges > 0) {
             int startVertex = rand() % verticesNumber;
             int endVertex = rand() % verticesNumber;
@@ -93,7 +91,7 @@ public:
         }
 
         graph.addEdge(predecessor, 0);
-        fillRandom(graph, edges - verticesNumber);
+        fillRandom(graph, verticesNumber, edges - verticesNumber);
         return graph;
     }
 
