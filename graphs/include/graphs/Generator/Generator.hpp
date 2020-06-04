@@ -52,13 +52,11 @@ public:
             }
 
             if (path.size() == edgesNumber) {
-                if (path.back() != 0 && !graph.containsEdge(path.back(), 0)) {
+                currentVertex = 0;
+                if (path.back() != currentVertex && !graph.containsEdge(path.back(), currentVertex)) {
                     graph.addEdge(path.back(), 0);
                     path.push_back(0);
-
-                    currentVertex = 0;
                 } else if (path.size() >= 2) {
-
                     currentVertex = path.back();
                     path.pop_back();
                     graph.removeEdge(path.back(), currentVertex);
