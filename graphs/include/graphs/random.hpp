@@ -19,7 +19,7 @@ std::array<int, N> randomIntegers(int start, int end) {
     for (int currentIndex = 0; currentIndex < N; ++currentIndex) {
         do {
             array[currentIndex] = randomInteger(start, end);
-        } while (std::find(array.begin(), array.begin() + currentIndex, array[currentIndex]) == array.begin() + currentIndex);
+        } while (std::find(array.begin(), array.begin() + currentIndex, array[currentIndex]) != array.begin() + currentIndex);
     }
 
     return array;

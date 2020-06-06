@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <array>
 #include <queue>
 #include <vector>
 #include <list>
@@ -19,6 +20,15 @@ std::ostream& operator<<(std::ostream& stream, const std::list<T>& container) {
 
 template <typename T>
 std::ostream& operator<<(std::ostream& stream, const std::vector<T>& container) {
+    for (const auto& el : container) {
+        stream << el << ' ';
+    }
+    
+    return stream;
+}
+
+template <typename T, std::size_t N>
+std::ostream& operator<<(std::ostream& stream, const std::array<T, N>& container) {
     for (const auto& el : container) {
         stream << el << ' ';
     }

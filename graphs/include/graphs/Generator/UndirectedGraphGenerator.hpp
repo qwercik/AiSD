@@ -6,11 +6,12 @@
 #include <cstdlib>
 #include <algorithm>
 
-#include <graphs/Graph.hpp>
 #include <graphs/UndirectedGraph.hpp>
+#include <graphs/Generator/Generator.hpp>
 #include <graphs/random.hpp>
+#include <graphs/io.hpp>
 
-class UndirectedGraphGenerator {
+class UndirectedGraphGenerator : public Generator {
 public:
     /**
      * Function returns how many edges graph should contain
@@ -43,7 +44,8 @@ public:
             predecessor = successor;
         }
 
-        graph.addEdge(predecessor, successor);
+        graph.addEdge(predecessor, startingVertex);
+        return verticesNumber;
     }
 
     /**
@@ -93,91 +95,18 @@ public:
         graph.addEdge(polygon[N - 1], polygon[0]);
     }
 
-
-
-    // Only for n >= 4
-    template <typename T>
-    T generate(int verticesNumber, int saturationPercents = 50) {
-        T graph(verticesNumber);
-        
-        int startVertex = 0;
-        int endVertex = 1;
-
-        for (int i = 0; i < edges; ++i) {
-             graph.addEdge(startVertex, endVertex);
-             endVertex++;
-
-             if (endVertex == verticesNumber) {
-                 startVertex++;
-                 endVertex = startVertex + 1;
-             }
-        }
-
-        return graph;
+    void fillHamilton(UndirectedGraph& graph, int verticesNumber, int edgesNumber) {
+        fillWithSmallestHamiltonCycle(graph, verticesNumber);
+        fillRandomly(graph, verticesNumber, edgesNumber - verticesNumber);
     }
 
-        // Edges should not be bigger then graph.maxEdges()
-    void fillRandom(Graph& graph, int verticesNumber, int edges) {
-        while (edges > 0) {
-            int startVertex = rand() % verticesNumber;
-            int endVertex = rand() % verticesNumber;
-            
-            if (startVertex != endVertex && !graph.containsEdge(startVertex, endVertex)) {
-                graph.addEdge(startVertex, endVertex);
-                edges--;
-            }
-        }
-    }
-
-
-    // Only for n >= 4
-    template <bool directed = false>
-    void fill(Graph& graph, int edges) {
-        int verticesNumber = graph.getVerticesNumber();
-        int startVertex = 0;
-        int endVertex = 0;
-
-        for (int i = 0; i < edges; ++i) {
-            if (startVertex == endVertex) {
-                endVertex++;
-            }
-
-            if (endVertex == verticesNumber) {
-                startVertex++;
-                endVertex = directed ? 0 : startVertex + 1;
-            }
-
-            graph.addEdge(startVertex, endVertex);
-            endVertex++;
-        }
-    }
-
-
-    // Saturation percents should be enough!!!
-    // TODO: calculate minimum satuartion and raise exception in case of problems
-    void fillHamilton(UndirectedGraph& graph, int verticesNumber, int saturationPercents = 50) {
-        // edges should >= verticesNumber
-        int edges = graph.maxEdges() * (saturationPercents / 100.);
-        
-        std::vector<bool> visited(verticesNumber, false);
-        int predecessor = 0;
-        visited[predecessor] = true;
-        for (int i = 0; i < verticesNumber - 1; ++i) {
-            int successor;
-            do {
-                successor = rand() % verticesNumber;
-            } while (visited[successor]);
-            visited[successor] = true;
-
-            graph.addEdge(predecessor, successor);
-            predecessor = successor;
-        }
-
-        graph.addEdge(predecessor, 0);
-        fillRandom(graph, verticesNumber, edges - verticesNumber);
-    }
-
-    bool fillEulerBruteForce(UndirectedGraph& graph, int verticesNumber, int edgesNumber) {
+    /**
+     * Use this function very carefully!
+     * It's possible to graph with given <verticesNumber> and <edgesNumber> cannot be Euler graph
+     * In this case the function will be executing for some time (which can be really long)
+     * And it's not guarantee it end with success
+     */
+    bool fillEulerUsingBactracking(UndirectedGraph& graph, int verticesNumber, int edgesNumber) {
         std::list<int> path;
         path.push_back(0);
         int currentVertex = 0;
@@ -225,9 +154,5 @@ public:
         }
 
         return true;
-    }
-
-    void fillEulerWithSmallestNumberOfEdges(UndirectedGraph& graph, int verticesNumber) {
-
     }
 };

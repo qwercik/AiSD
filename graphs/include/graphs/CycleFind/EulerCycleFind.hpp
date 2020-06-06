@@ -7,6 +7,8 @@
 #include <graphs/UndirectedGraph.hpp>
 #include <graphs/io.hpp>
 
+/** Remember that graph structure is destroyed after using this class!
+ **/
 class EulerCycleFind : public CycleFind {
 private:
     const int START_VERTEX = 0;

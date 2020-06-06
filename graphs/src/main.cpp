@@ -1,25 +1,25 @@
 #include <iostream>
 #include <memory>
-#include <graphs/Graph.hpp>
-#include <graphs/AdjacencyMatrix/DirectedAdjacencyMatrixGraph.hpp>
-#include <graphs/AdjacencyMatrix/UndirectedAdjacencyMatrixGraph.hpp>
-#include <graphs/AdjacencyList/DirectedAdjacencyListGraph.hpp>
-#include <graphs/AdjacencyList/UndirectedAdjacencyListGraph.hpp>
-#include <graphs/IncidenceMatrix/DirectedIncidenceMatrixGraph.hpp>
-#include <graphs/IncidenceMatrix/UndirectedIncidenceMatrixGraph.hpp>
-#include <graphs/Search/Search.hpp>
-#include <graphs/Search/DeepFirstSearch.hpp>
-#include <graphs/Search/BreadthFirstSearch.hpp>
-#include <graphs/TopologicalSort/BreadthFirstSort.hpp>
-#include <graphs/TopologicalSort/DeepFirstSort.hpp>
-#include <graphs/Generator/Generator.hpp>
-#include <graphs/CycleFind/HamiltonCycleFind.hpp>
-#include <graphs/CycleFind/EulerCycleFind.hpp>
+#include <graphs/graphs.hpp>
 
 void test() {
-	
+	int n = 10;
+	UndirectedAdjacencyMatrixGraph graph(n);
+
+	UndirectedGraphGenerator gen;
+	int edgesNumber = gen.getEdgesNumberFromSaturation(graph, 30);
+	gen.fillWithSmallestHamiltonCycle(graph, n);
+	gen.fillWithBestMatchedEulerCycle(graph, n, edgesNumber - n);
+
+	HamiltonCycleFind hamiltonFinder(graph);
+	EulerCycleFind eulerFinder(graph);
+
+	std::cout << graph;
+	std::cout << "Hamilton cycle: " << hamiltonFinder.find() << '\n';
+	std::cout << "Euler cycle: " << eulerFinder.find() << '\n';
 }
 
 int main() {
+	srand(time(nullptr));
 	test();
 }
