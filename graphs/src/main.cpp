@@ -77,10 +77,11 @@ void printCyclesWithAsk(CycleFind& finder) {
         char reply = std::cin.get();
 
         if (reply == 'n') {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             break;
         }
     }
+
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
 template <typename GraphBackend, int VerticesNumber, int SaturationPercents>
@@ -92,13 +93,13 @@ void cyclesFindExample() {
     EulerCycleFind euler(graph);
     HamiltonCycleFind hamilton(graph);
 
-    std::cout << "Obwody Eulera:\n";
-    printCyclesWithAsk(euler);
-    std::cout << '\n';
+    std::cout << "Cykle Hamiltona:" << std::endl;
+    printCyclesWithAsk(hamilton);
+    std::cout << std::endl;
 
-    std::cout << "Cykle Hamiltona:\n";
+    std::cout << "Obwody Eulera:" << std::endl;
     printCyclesWithAsk(euler);
-    std::cout << '\n';    
+    std::cout << std::endl;
 }
 
 
