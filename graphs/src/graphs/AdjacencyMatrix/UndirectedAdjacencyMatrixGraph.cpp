@@ -41,3 +41,7 @@ std::list<int> UndirectedAdjacencyMatrixGraph::getPredecessors(int vertex) const
     // For unordered graph list of successors and predecessors should be the same
     return getSuccessors(vertex);
 }
+
+void UndirectedAdjacencyMatrixGraph::dedicatedPrint(std::ostream& stream) const {
+    stream << matrix;
+}

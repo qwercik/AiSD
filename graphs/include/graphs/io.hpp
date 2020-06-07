@@ -5,6 +5,7 @@
 #include <queue>
 #include <vector>
 #include <list>
+#include <graphs/Matrix/Matrix.hpp>
 
 #define DBG(x) std::cerr << #x << " = " << x << '\n';
 #define dbg std::cerr << "[DBG] " 

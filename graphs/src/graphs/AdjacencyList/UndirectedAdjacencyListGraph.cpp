@@ -36,3 +36,7 @@ std::list<int> UndirectedAdjacencyListGraph::getSuccessors(int vertex) const {
 std::list<int> UndirectedAdjacencyListGraph::getPredecessors(int vertex) const {
     return lists[vertex];
 }
+
+void UndirectedAdjacencyListGraph::dedicatedPrint(std::ostream& stream) const {
+    print(stream);
+}

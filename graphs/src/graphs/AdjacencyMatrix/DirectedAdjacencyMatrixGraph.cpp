@@ -44,3 +44,7 @@ std::list<int> DirectedAdjacencyMatrixGraph::getPredecessors(int vertex) const {
 
     return vertices;
 }
+
+void DirectedAdjacencyMatrixGraph::dedicatedPrint(std::ostream& stream) const {
+    stream << matrix;
+}

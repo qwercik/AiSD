@@ -18,6 +18,7 @@ public:
     virtual bool containsEdge(int startVertex, int endVertex) const override;
     virtual std::list<int> getSuccessors(int vertex) const override;
     virtual std::list<int> getPredecessors(int vertex) const override;
+    virtual void dedicatedPrint(std::ostream& stream) const override;
 
 protected:
     std::vector<std::list<int>> lists;

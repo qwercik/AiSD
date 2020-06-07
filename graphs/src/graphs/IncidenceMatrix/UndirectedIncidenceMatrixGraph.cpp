@@ -58,3 +58,7 @@ int UndirectedIncidenceMatrixGraph::findEdgeRow(int startVertex, int endVertex) 
     // If not find
     return -1;
 }
+
+void UndirectedIncidenceMatrixGraph::dedicatedPrint(std::ostream& stream) const {
+    stream << matrix;
+}

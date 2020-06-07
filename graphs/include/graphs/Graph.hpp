@@ -22,6 +22,7 @@ public:
     bool isComplete() const;
 
     void print(std::ostream& stream) const;
+    virtual void dedicatedPrint(std::ostream& stream) const = 0;
 
 protected:
     std::size_t verticesNumber;

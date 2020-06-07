@@ -43,3 +43,7 @@ std::list<int> DirectedAdjacencyListGraph::getPredecessors(int vertex) const {
 
     return predecessorsList;
 }
+
+void DirectedAdjacencyListGraph::dedicatedPrint(std::ostream& stream) const {
+    print(stream);
+}

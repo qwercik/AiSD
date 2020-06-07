@@ -53,11 +53,11 @@ protected:
 
 template <typename T>
 std::ostream& operator<<(std::ostream& stream, const Matrix<T>& matrix) {
-    for (std::size_t y = 0; y < matrix.getRows(); ++y) {
-        for (std::size_t x = 0; x < matrix.getColumns(); ++x) {
-            stream << matrix.get(y, x) << " ";
+    for (std::size_t row = 0; row < matrix.getRows(); ++row) {
+        for (std::size_t column = 0; column < matrix.getColumns(); ++column) {
+            stream << matrix.get(row, column) << ' ';
         }
-        
+
         stream << '\n';
     }
 

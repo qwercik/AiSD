@@ -16,6 +16,8 @@ public:
     virtual std::list<int> getSuccessors(int vertex) const override;
     virtual std::list<int> getPredecessors(int vertex) const override;
 
+    virtual void dedicatedPrint(std::ostream& stream) const override;
+
 protected:
     Matrix<int> matrix;
 };

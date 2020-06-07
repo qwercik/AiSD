@@ -69,3 +69,7 @@ int DirectedIncidenceMatrixGraph::findEdgeRow(int startVertex, int endVertex) co
     // If not find
     return -1;
 }
+
+void DirectedIncidenceMatrixGraph::dedicatedPrint(std::ostream& stream) const {
+    stream << matrix;
+}
