@@ -1,5 +1,7 @@
-#include <graphs/graphs.hpp>
 #include <cxxabi.h>
+
+#include <graphs/graphs.hpp>
+
 
 template <typename T>
 void printType() {
@@ -61,7 +63,48 @@ void undirectedGraphExample() {
     std::cout << '\n';
 }
 
+
+void printCyclesWithAsk(CycleFind& finder) {
+    while (true) {
+        auto cycle = finder.find();
+        if (cycle.size() == 0) {
+            break;
+        }
+
+        std::cout << cycle;
+
+        std::cout << "\tKontynuować (t/n)? ";
+        char reply = std::cin.get();
+
+        if (reply == 'n') {
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            break;
+        }
+    }
+}
+
+template <typename GraphBackend, int VerticesNumber, int SaturationPercents>
+void cyclesFindExample() {
+    UndirectedGraphGenerator gen;
+    auto graph = gen.generateBothEulerAndHamiltonGraph<GraphBackend>(VerticesNumber, SaturationPercents);
+    std::cout << graph;
+
+    EulerCycleFind euler(graph);
+    HamiltonCycleFind hamilton(graph);
+
+    std::cout << "Obwody Eulera:\n";
+    printCyclesWithAsk(euler);
+    std::cout << '\n';
+
+    std::cout << "Cykle Hamiltona:\n";
+    printCyclesWithAsk(euler);
+    std::cout << '\n';    
+}
+
+
 int main(void) {
+    UndirectedGraphGenerator gen;
+
     void (*callbacks[])() = {
         directedGraphExample<DirectedAdjacencyMatrixGraph, 10, 50>,
         undirectedGraphExample<UndirectedAdjacencyMatrixGraph, 10, 50>,
@@ -70,7 +113,9 @@ int main(void) {
         undirectedGraphExample<UndirectedIncidenceMatrixGraph, 10, 50>,
 
         directedGraphExample<DirectedAdjacencyListGraph, 10, 50>,
-        undirectedGraphExample<UndirectedAdjacencyListGraph, 10, 50>
+        undirectedGraphExample<UndirectedAdjacencyListGraph, 10, 50>,
+
+        cyclesFindExample<UndirectedAdjacencyMatrixGraph, 10, 30>
     };
 
     printSeparator();
