@@ -13,6 +13,55 @@
 
 class UndirectedGraphGenerator : public Generator {
 public:
+    template <typename T>
+    T generateBothEulerAndHamiltonGraph(int verticesNumber, int saturationPercents) {
+        T graph(verticesNumber);
+        int edgesNumber = getEdgesNumberFromSaturation(graph, saturationPercents);
+        fillWithSmallestHamiltonCycle(graph, verticesNumber);
+        fillWithBestMatchedEulerCycle(graph, verticesNumber, edgesNumber - verticesNumber);
+
+        return graph;
+    }
+
+    template <typename T>
+    T generateHamiltonAndNotEulerGraph(int verticesNumber, int saturationPercents) {
+        auto graph = generateBothEulerAndHamiltonGraph<T>(verticesNumber, saturationPercents);
+        
+        // What should I do in case when graph is already complete?
+        // Removing edge is not safe, because I can break Hamilton cycle
+        std::array<int, 2> newEdge;
+        do {
+            newEdge = randomIntegers<2>(0, verticesNumber);
+        } while (graph.containsEdge(newEdge[0], newEdge[1]));
+        graph.addEdge(newEdge[0], newEdge[1]);
+
+        return graph;
+    }
+
+    template <typename T>
+    T generateEulerGraphAndNotHamilton(int verticesNumber, int saturationPercents) {
+        T graph(verticesNumber);
+        int edgesNumber = getEdgesNumberFromSaturation(graph, saturationPercents);
+        fillWithSmallestHamiltonCycle(graph, verticesNumber - 1);
+        fillWithBestMatchedEulerCycle(graph, verticesNumber - 1, edgesNumber - verticesNumber + 1);
+
+        return graph;
+    }
+
+    template <typename T>
+    T generateNeitherEulerNorHamiltonGraph(int verticesNumber, int saturationPercents) {
+        auto graph = generateEulerGraphAndNotHamilton<T>(verticesNumber, saturationPercents);
+
+        std::array<int, 2> newEdge;
+        do {
+            newEdge = randomIntegers<2>(0, verticesNumber - 1);
+        } while (graph.containsEdge(newEdge[0], newEdge[1]));
+        graph.addEdge(newEdge[0], newEdge[1]);
+
+        return graph;
+    }
+
+private:
     /**
      * Function returns how many edges graph should contain
      * <saturationPercents> describe existing edges to max edges (in complete graph) proportion

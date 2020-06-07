@@ -3,13 +3,8 @@
 #include <graphs/graphs.hpp>
 
 void test() {
-	int n = 10;
-	UndirectedAdjacencyMatrixGraph graph(n);
-
 	UndirectedGraphGenerator gen;
-	int edgesNumber = gen.getEdgesNumberFromSaturation(graph, 30);
-	gen.fillWithSmallestHamiltonCycle(graph, n);
-	gen.fillWithBestMatchedEulerCycle(graph, n, edgesNumber - n);
+	auto graph = gen.generateBothEulerAndHamiltonGraph<UndirectedAdjacencyMatrixGraph>(10, 70);
 
 	HamiltonCycleFind hamiltonFinder(graph);
 	EulerCycleFind eulerFinder(graph);
