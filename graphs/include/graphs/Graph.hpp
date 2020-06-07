@@ -18,6 +18,8 @@ public:
     virtual std::list<int> getPredecessors(int vertex) const = 0;
 
     virtual std::size_t maxEdges() const = 0;
+    std::size_t totalEdges() const;
+    bool isComplete() const;
 
     void print(std::ostream& stream) const;
 

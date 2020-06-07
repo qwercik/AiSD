@@ -12,6 +12,19 @@ std::size_t Graph::getVerticesNumber() const {
     return this->verticesNumber;
 }
 
+std::size_t Graph::totalEdges() const {
+    std::size_t sumOfDegrees = 0;
+    for (int i = 0; i < getVerticesNumber(); ++i) {
+        sumOfDegrees += getSuccessors(i).size();
+    }
+
+    return sumOfDegrees / 2;
+}
+
+bool Graph::isComplete() const {
+    return totalEdges() == maxEdges();
+}
+
 void Graph::print(std::ostream& stream) const {
     for (int i = 0; i < verticesNumber; ++i) {
         stream << "[" << i << "]: " << getSuccessors(i) << '\n';

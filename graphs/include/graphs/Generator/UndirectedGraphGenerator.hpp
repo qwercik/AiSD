@@ -26,14 +26,7 @@ public:
     template <typename T>
     T generateHamiltonAndNotEulerGraph(int verticesNumber, int saturationPercents) {
         auto graph = generateBothEulerAndHamiltonGraph<T>(verticesNumber, saturationPercents);
-        
-        // What should I do in case when graph is already complete?
-        // Removing edge is not safe, because I can break Hamilton cycle
-        std::array<int, 2> newEdge;
-        do {
-            newEdge = randomIntegers<2>(0, verticesNumber);
-        } while (graph.containsEdge(newEdge[0], newEdge[1]));
-        graph.addEdge(newEdge[0], newEdge[1]);
+        insertRandomEdgeToGraph(graph, verticesNumber);
 
         return graph;
     }
@@ -51,17 +44,23 @@ public:
     template <typename T>
     T generateNeitherEulerNorHamiltonGraph(int verticesNumber, int saturationPercents) {
         auto graph = generateEulerGraphAndNotHamilton<T>(verticesNumber, saturationPercents);
-
-        std::array<int, 2> newEdge;
-        do {
-            newEdge = randomIntegers<2>(0, verticesNumber - 1);
-        } while (graph.containsEdge(newEdge[0], newEdge[1]));
-        graph.addEdge(newEdge[0], newEdge[1]);
+        insertRandomEdgeToGraph(graph, verticesNumber - 1);
 
         return graph;
     }
 
 private:
+    /**
+     * Make sure that graph is not complete
+     */
+    void insertRandomEdgeToGraph(UndirectedGraph& graph, int verticesNumber) {
+        std::array<int, 2> newEdge;
+        do {
+            newEdge = randomIntegers<2>(0, verticesNumber);
+        } while (graph.containsEdge(newEdge[0], newEdge[1]));
+        graph.addEdge(newEdge[0], newEdge[1]);
+    }
+
     /**
      * Function returns how many edges graph should contain
      * <saturationPercents> describe existing edges to max edges (in complete graph) proportion
