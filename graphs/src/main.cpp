@@ -1,4 +1,12 @@
 #include <graphs/graphs.hpp>
+#include <cxxabi.h>
+
+template <typename T>
+void printType() {
+    char *name = abi::__cxa_demangle(typeid(T).name(), 0, 0, NULL);
+    std::cout << name;
+    delete name;
+}
 
 void printSeparator() {
     const int WIDTH = 80;
@@ -6,11 +14,16 @@ void printSeparator() {
 }
 
 
-const int VERTICES = 10;
+template <typename GraphBackend, int VerticesNumber, int SaturationPercents>
+void printExampleHeader() {
+    std::cout << "Graf (" << VerticesNumber << ", " << SaturationPercents << "%) klasy ";
+    printType<GraphBackend>();
+    std::cout << '\n';
+}
 
 template <typename GraphBackend, int VerticesNumber, int SaturationPercents>
 void directedGraphExample() {
-    std::cout << "Graf skierowany (" << VerticesNumber << ", " << SaturationPercents << "%) klasy "  << '\n';
+    printExampleHeader<GraphBackend, VerticesNumber, SaturationPercents>();
 
     DirectedGraphGenerator gen;
     auto graph = gen.generateRandomly<GraphBackend>(VerticesNumber, SaturationPercents);
@@ -33,7 +46,7 @@ void directedGraphExample() {
 
 template <typename GraphBackend, int VerticesNumber, int SaturationPercents>
 void undirectedGraphExample() {
-    std::cout << "Graf skierowany (" << VerticesNumber << ", " << SaturationPercents << "%) klasy "  << '\n';
+    printExampleHeader<GraphBackend, VerticesNumber, SaturationPercents>();
 
     UndirectedGraphGenerator gen;
     auto graph = gen.generateRandomly<GraphBackend>(VerticesNumber, SaturationPercents);
@@ -50,7 +63,14 @@ void undirectedGraphExample() {
 
 int main(void) {
     void (*callbacks[])() = {
-        directedGraphExample<DirectedAdjacencyMatrixGraph, 10, 50>
+        directedGraphExample<DirectedAdjacencyMatrixGraph, 10, 50>,
+        undirectedGraphExample<UndirectedAdjacencyMatrixGraph, 10, 50>,
+
+        directedGraphExample<DirectedIncidenceMatrixGraph, 10, 50>,
+        undirectedGraphExample<UndirectedIncidenceMatrixGraph, 10, 50>,
+
+        directedGraphExample<DirectedAdjacencyListGraph, 10, 50>,
+        undirectedGraphExample<UndirectedAdjacencyListGraph, 10, 50>
     };
 
     printSeparator();
