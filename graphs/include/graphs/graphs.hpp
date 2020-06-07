@@ -13,7 +13,11 @@
 #include <graphs/TopologicalSort/BreadthFirstSort.hpp>
 #include <graphs/TopologicalSort/DeepFirstSort.hpp>
 #include <graphs/Generator/Generator.hpp>
-#include <graphs/Generator/UndirectedGraphGenerator.hpp>
-#include <graphs/Generator/DirectedGraphGenerator.hpp>
+#include <graphs/Generator/IterativeGenerator.hpp>
+#include <graphs/Generator/RandomGenerator.hpp>
+#include <graphs/Generator/BothEulerAndHamiltonGenerator.hpp>
+#include <graphs/Generator/NeitherEulerNorHamiltonGenerator.hpp>
+#include <graphs/Generator/OnlyEulerAndNotHamiltonGenerator.hpp>
+#include <graphs/Generator/OnlyHamiltonAndNotEulerGenerator.hpp>
 #include <graphs/CycleFind/HamiltonCycleFind.hpp>
 #include <graphs/CycleFind/EulerCycleFind.hpp>

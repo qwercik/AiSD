@@ -27,8 +27,8 @@ template <typename GraphBackend, int VerticesNumber, int SaturationPercents>
 void directedGraphExample() {
     printExampleHeader<GraphBackend, VerticesNumber, SaturationPercents>();
 
-    DirectedGraphGenerator gen;
-    auto graph = gen.generateRandomly<GraphBackend>(VerticesNumber, SaturationPercents);
+    RandomGenerator<GraphBackend> gen;
+    auto graph = gen.generate(VerticesNumber, SaturationPercents);
 
     graph.dedicatedPrint(std::cout);
     std::cout << '\n';
@@ -50,8 +50,8 @@ template <typename GraphBackend, int VerticesNumber, int SaturationPercents>
 void undirectedGraphExample() {
     printExampleHeader<GraphBackend, VerticesNumber, SaturationPercents>();
 
-    UndirectedGraphGenerator gen;
-    auto graph = gen.generateRandomly<GraphBackend>(VerticesNumber, SaturationPercents);
+    RandomGenerator<GraphBackend> gen;
+    auto graph = gen.generate(VerticesNumber, SaturationPercents);
 
     graph.dedicatedPrint(std::cout);
     std::cout << '\n';
@@ -84,10 +84,10 @@ void printCyclesWithAsk(CycleFind& finder) {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
-template <typename GraphBackend, int VerticesNumber, int SaturationPercents>
+template <typename GraphGenerator, int VerticesNumber, int SaturationPercents>
 void cyclesFindExample() {
-    UndirectedGraphGenerator gen;
-    auto graph = gen.generateBothEulerAndHamiltonGraph<GraphBackend>(VerticesNumber, SaturationPercents);
+    GraphGenerator gen;
+    auto graph = gen.generate(VerticesNumber, SaturationPercents);
     std::cout << graph;
 
     EulerCycleFind euler(graph);
@@ -104,8 +104,6 @@ void cyclesFindExample() {
 
 
 int main(void) {
-    UndirectedGraphGenerator gen;
-
     void (*callbacks[])() = {
         directedGraphExample<DirectedAdjacencyMatrixGraph, 10, 50>,
         undirectedGraphExample<UndirectedAdjacencyMatrixGraph, 10, 50>,
@@ -116,7 +114,8 @@ int main(void) {
         directedGraphExample<DirectedAdjacencyListGraph, 10, 50>,
         undirectedGraphExample<UndirectedAdjacencyListGraph, 10, 50>,
 
-        cyclesFindExample<UndirectedAdjacencyMatrixGraph, 10, 30>
+        cyclesFindExample<BothEulerAndHamiltonGenerator<UndirectedIncidenceMatrixGraph>, 10, 30>,
+        cyclesFindExample<NeitherEulerNorHamiltonGenerator<UndirectedIncidenceMatrixGraph>, 10, 70>,
     };
 
     printSeparator();
