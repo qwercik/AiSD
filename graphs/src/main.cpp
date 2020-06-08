@@ -23,11 +23,11 @@ void printExampleHeader() {
     std::cout << '\n';
 }
 
-template <typename GraphBackend, int VerticesNumber, int SaturationPercents>
+template <typename GraphGenerator, int VerticesNumber, int SaturationPercents>
 void directedGraphExample() {
-    printExampleHeader<GraphBackend, VerticesNumber, SaturationPercents>();
+    printExampleHeader<GraphGenerator, VerticesNumber, SaturationPercents>();
 
-    RandomGenerator<GraphBackend> gen;
+    GraphGenerator gen;
     auto graph = gen.generate(VerticesNumber, SaturationPercents);
 
     graph.dedicatedPrint(std::cout);
@@ -46,11 +46,11 @@ void directedGraphExample() {
     std::cout << '\n';
 }
 
-template <typename GraphBackend, int VerticesNumber, int SaturationPercents>
+template <typename GraphGenerator, int VerticesNumber, int SaturationPercents>
 void undirectedGraphExample() {
-    printExampleHeader<GraphBackend, VerticesNumber, SaturationPercents>();
+    printExampleHeader<GraphGenerator, VerticesNumber, SaturationPercents>();
 
-    RandomGenerator<GraphBackend> gen;
+    GraphGenerator gen;
     auto graph = gen.generate(VerticesNumber, SaturationPercents);
 
     graph.dedicatedPrint(std::cout);
@@ -73,22 +73,23 @@ void printCyclesWithAsk(CycleFind& finder) {
 
         std::cout << cycle;
 
-        std::cout << "\tKontynuować (t/n)? ";
-        char reply = std::cin.get();
+        std::cout << "\tKontynuować? ";
+        std::string reply;
+        std::getline(std::cin, reply);
 
-        if (reply == 'n') {
+        if (reply == "n") {
             break;
         }
     }
-
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
 template <typename GraphGenerator, int VerticesNumber, int SaturationPercents>
 void cyclesFindExample() {
+    printExampleHeader<GraphGenerator, VerticesNumber, SaturationPercents>();
+
     GraphGenerator gen;
     auto graph = gen.generate(VerticesNumber, SaturationPercents);
-    std::cout << graph;
+    std::cout << graph << '\n';
 
     EulerCycleFind euler(graph);
     HamiltonCycleFind hamilton(graph);
@@ -104,18 +105,22 @@ void cyclesFindExample() {
 
 
 int main(void) {
+    srand(time(nullptr));
+
     void (*callbacks[])() = {
-        directedGraphExample<DirectedAdjacencyMatrixGraph, 10, 50>,
-        undirectedGraphExample<UndirectedAdjacencyMatrixGraph, 10, 50>,
+        directedGraphExample<IterativeGenerator<DirectedAdjacencyMatrixGraph>, 10, 50>,
+        undirectedGraphExample<IterativeGenerator<UndirectedAdjacencyMatrixGraph>, 10, 50>,
 
-        directedGraphExample<DirectedIncidenceMatrixGraph, 10, 50>,
-        undirectedGraphExample<UndirectedIncidenceMatrixGraph, 10, 50>,
+        directedGraphExample<IterativeGenerator<DirectedIncidenceMatrixGraph>, 10, 50>,
+        undirectedGraphExample<IterativeGenerator<UndirectedIncidenceMatrixGraph>, 10, 50>,
 
-        directedGraphExample<DirectedAdjacencyListGraph, 10, 50>,
-        undirectedGraphExample<UndirectedAdjacencyListGraph, 10, 50>,
+        directedGraphExample<IterativeGenerator<DirectedAdjacencyListGraph>, 10, 50>,
+        undirectedGraphExample<IterativeGenerator<UndirectedAdjacencyListGraph>, 10, 50>,
 
-        cyclesFindExample<BothEulerAndHamiltonGenerator<UndirectedIncidenceMatrixGraph>, 10, 30>,
-        cyclesFindExample<NeitherEulerNorHamiltonGenerator<UndirectedIncidenceMatrixGraph>, 10, 70>,
+        cyclesFindExample<BothEulerAndHamiltonGenerator<UndirectedAdjacencyMatrixGraph>, 10, 30>,
+        cyclesFindExample<OnlyEulerAndNotHamiltonGenerator<UndirectedAdjacencyMatrixGraph>, 10, 30>,
+        cyclesFindExample<OnlyHamiltonAndNotEulerGenerator<UndirectedAdjacencyMatrixGraph>, 10, 30>,
+        cyclesFindExample<NeitherEulerNorHamiltonGenerator<UndirectedAdjacencyMatrixGraph>, 10, 30>,
     };
 
     printSeparator();
