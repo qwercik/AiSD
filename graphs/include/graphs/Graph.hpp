@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <stdexcept>
 #include <cstddef>
 #include <list>
 
@@ -27,7 +28,12 @@ public:
     void print(std::ostream& stream) const;
     virtual void dedicatedPrint(std::ostream& stream) const = 0;
 
+    bool correctVertex(std::size_t vertex) const;
+
 protected:
+    void handleIfVertexNotInRange(std::size_t vertex) const;
+    void handleIfEdgeNotExist(std::size_t predecessor, std::size_t successor) const;
+
     std::size_t verticesNumber;
 };
 

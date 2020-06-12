@@ -15,23 +15,33 @@ DirectedAdjacencyListGraph::DirectedAdjacencyListGraph(std::size_t verticesNumbe
 {}
 
 void DirectedAdjacencyListGraph::addEdge(int startVertex, int endVertex) {
+    handleIfVertexNotInRange(startVertex);
+    handleIfVertexNotInRange(endVertex);
+
     lists[startVertex].push_back(endVertex);
 }
 
 void DirectedAdjacencyListGraph::removeEdge(int startVertex, int endVertex) {
+    handleIfEdgeNotExist(startVertex, endVertex);
     lists[startVertex].remove(endVertex);
 }
 
 bool DirectedAdjacencyListGraph::containsEdge(int startVertex, int endVertex) const {
+    handleIfVertexNotInRange(startVertex);
+    handleIfVertexNotInRange(endVertex);
+
     auto current = lists[startVertex];
     return std::find(current.begin(), current.end(), endVertex) != current.end();
 }
 
 std::list<int> DirectedAdjacencyListGraph::getSuccessors(int vertex) const {
+    handleIfVertexNotInRange(vertex);
     return lists[vertex];
 }
 
 std::list<int> DirectedAdjacencyListGraph::getPredecessors(int vertex) const {
+    handleIfVertexNotInRange(vertex);
+
     std::list<int> predecessorsList;
     int current = 0;
     for (const auto& vertexSuccessors : lists) {
@@ -48,6 +58,8 @@ std::list<int> DirectedAdjacencyListGraph::getPredecessors(int vertex) const {
 }
 
 std::size_t DirectedAdjacencyListGraph::getIndegree(int vertex) const {
+    handleIfVertexNotInRange(vertex);
+
     std::size_t counter = 0;
     for (const auto& list : lists) {
         for (auto successor : list) {
@@ -61,6 +73,7 @@ std::size_t DirectedAdjacencyListGraph::getIndegree(int vertex) const {
 }
 
 std::size_t DirectedAdjacencyListGraph::getOutdegree(int vertex) const {
+    handleIfVertexNotInRange(vertex);
     return lists[vertex].size();
 }
 

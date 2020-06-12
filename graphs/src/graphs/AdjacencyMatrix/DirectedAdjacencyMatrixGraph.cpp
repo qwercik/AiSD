@@ -10,18 +10,25 @@ DirectedAdjacencyMatrixGraph::DirectedAdjacencyMatrixGraph(std::size_t verticesN
 {}
 
 void DirectedAdjacencyMatrixGraph::addEdge(int startVertex, int endVertex) {
+    handleIfVertexNotInRange(startVertex);
+    handleIfVertexNotInRange(endVertex);
     matrix.increment(startVertex, endVertex);
 }
 
 void DirectedAdjacencyMatrixGraph::removeEdge(int startVertex, int endVertex) {
+    handleIfEdgeNotExist(startVertex, endVertex);
     matrix.decrement(startVertex, endVertex);
 }
 
 bool DirectedAdjacencyMatrixGraph::containsEdge(int startVertex, int endVertex) const {
+    handleIfVertexNotInRange(startVertex);
+    handleIfVertexNotInRange(endVertex);
     return matrix.get(startVertex, endVertex) > 0;
 }
 
 std::list<int> DirectedAdjacencyMatrixGraph::getSuccessors(int vertex) const {
+    handleIfVertexNotInRange(vertex);
+
     std::list<int> vertices;
     for (int i = 0; i < verticesNumber; ++i) {
         auto count = matrix.get(vertex, i);
@@ -34,6 +41,8 @@ std::list<int> DirectedAdjacencyMatrixGraph::getSuccessors(int vertex) const {
 }
 
 std::list<int> DirectedAdjacencyMatrixGraph::getPredecessors(int vertex) const {
+    handleIfVertexNotInRange(vertex);
+
     std::list<int> vertices;
     for (int i = 0; i < verticesNumber; ++i) {
         auto count = matrix.get(i, vertex);
@@ -46,6 +55,8 @@ std::list<int> DirectedAdjacencyMatrixGraph::getPredecessors(int vertex) const {
 }
 
 std::size_t DirectedAdjacencyMatrixGraph::getIndegree(int vertex) const {
+    handleIfVertexNotInRange(vertex);
+
     std::size_t counter = 0;
     for (int current = 0; current < verticesNumber; ++current) {
         counter += matrix.get(current, vertex);
@@ -55,6 +66,8 @@ std::size_t DirectedAdjacencyMatrixGraph::getIndegree(int vertex) const {
 }
 
 std::size_t DirectedAdjacencyMatrixGraph::getOutdegree(int vertex) const {
+    handleIfVertexNotInRange(vertex);
+
     std::size_t counter = 0;
     for (int current = 0; current < verticesNumber; ++current) {
         counter += matrix.get(vertex, current);

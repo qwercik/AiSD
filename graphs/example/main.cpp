@@ -87,11 +87,13 @@ void undirectedGraphExample() {
 
 void printCyclesWithAsk(CycleFind& finder) {
     while (true) {
-        auto cycle = finder.find();
-        if (cycle.size() == 0) {
+        std::list<int> cycle;
+        try {
+            cycle = finder.find();
+        } catch (CycleNotFoundException& e) {
             break;
         }
-
+        
         std::cout << cycle;
 
         std::cout << "\tKontynuować? ";

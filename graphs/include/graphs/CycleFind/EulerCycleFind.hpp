@@ -11,82 +11,17 @@
  **/
 class EulerCycleFind : public CycleFind {
 public:
-    EulerCycleFind(UndirectedGraph& graph) :
-        graph(graph),
-        anyCycleExist(true)
-    {
-        startingVertex = 0;
-        for (; startingVertex < graph.getVerticesNumber(); ++startingVertex) {
-            if (graph.getOutdegree(startingVertex) != 0) {
-                break;
-            }
-        }
+    EulerCycleFind(UndirectedGraph& graph);
 
-        if (startingVertex == graph.getVerticesNumber()) {
-            anyCycleExist = false;
-            return;
-        }
-
-        if (!checkExist()) {
-            anyCycleExist = false;
-            return;
-        }
-
-        currentVertex = startingVertex;
-        path.push_back(startingVertex);
-        successors.push_back(graph.getSuccessors(startingVertex));
-        totalEdges = graph.totalEdges();
-    }
-
-    virtual std::list<int> find() override {
-        if (!anyCycleExist) {
-            return {};
-        } else {
-            findNextCycle();
-            return path;
-        }
-    }
+    virtual std::list<int> find() override;
 
 private:
-    bool checkExist() {
-        for (int i = 0; i < graph.getVerticesNumber(); ++i) {
-            if (graph.getOutdegree(i) % 2 != 0) {
-                return false;
-            }
-        }
+    bool checkExist();
 
-        return true;
-    }
-
-    // Returns true if Euler cycle has been already found
-    // Otherwise returns false
-    void findNextCycle() {
-        while (!path.empty() && !successors.empty()) {
-            while (successors.back().empty()) {
-                int successor = path.back();
-                path.pop_back();
-                successors.pop_back();
-
-                if (path.empty() || successors.empty()) {
-                    return;
-                }
-            
-                int predecessor = path.back();
-                graph.addEdge(predecessor, successor);
-            }
-
-            currentVertex = successors.back().front();
-            successors.back().pop_front();
-
-            if (path.size() == totalEdges) {
-                return;
-            }
-
-            graph.removeEdge(path.back(), currentVertex);
-            path.push_back(currentVertex);
-            successors.push_back(graph.getSuccessors(currentVertex));
-        }
-    }
+    /**
+     * Returns true if Euler cycle has been already found
+     */
+    bool findNextCycle();
 
     int startingVertex;
     int totalEdges;

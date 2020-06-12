@@ -11,6 +11,9 @@ DirectedIncidenceMatrixGraph::DirectedIncidenceMatrixGraph(std::size_t verticesN
 {}
 
 void DirectedIncidenceMatrixGraph::addEdge(int startVertex, int endVertex) {
+    handleIfVertexNotInRange(startVertex);
+    handleIfVertexNotInRange(endVertex);
+
     matrix.addRow();
     auto edgeIndex = matrix.getRows() - 1;
 
@@ -19,15 +22,22 @@ void DirectedIncidenceMatrixGraph::addEdge(int startVertex, int endVertex) {
 }
 
 void DirectedIncidenceMatrixGraph::removeEdge(int startVertex, int endVertex) {
+    handleIfEdgeNotExist(startVertex, endVertex);
+
     auto edgeIndex = findEdgeRow(startVertex, endVertex);
     matrix.removeRow(edgeIndex);
 }
 
 bool DirectedIncidenceMatrixGraph::containsEdge(int startVertex, int endVertex) const {
+    handleIfVertexNotInRange(startVertex);
+    handleIfVertexNotInRange(endVertex);
+
     return findEdgeRow(startVertex, endVertex) != -1;
 }
 
 std::list<int> DirectedIncidenceMatrixGraph::getSuccessors(int vertex) const {
+    handleIfVertexNotInRange(vertex);
+
     std::list<int> successors;
     for (int i = 0; i < matrix.getRows(); ++i) {
         if (matrix.get(i, vertex) == 1) {
@@ -44,6 +54,8 @@ std::list<int> DirectedIncidenceMatrixGraph::getSuccessors(int vertex) const {
 }
 
 std::list<int> DirectedIncidenceMatrixGraph::getPredecessors(int vertex) const {
+    handleIfVertexNotInRange(vertex);
+
     std::list<int> predecessors;
     for (int i = 0; i < matrix.getRows(); ++i) {
         if (matrix.get(i, vertex) == -1) {
@@ -60,6 +72,7 @@ std::list<int> DirectedIncidenceMatrixGraph::getPredecessors(int vertex) const {
 }
 
 std::size_t DirectedIncidenceMatrixGraph::getIndegree(int vertex) const {
+    handleIfVertexNotInRange(vertex);
     std::size_t counter = 0;
 
     for (int edge = 0; edge < matrix.getRows(); ++edge) {
@@ -72,6 +85,7 @@ std::size_t DirectedIncidenceMatrixGraph::getIndegree(int vertex) const {
 }
 
 std::size_t DirectedIncidenceMatrixGraph::getOutdegree(int vertex) const {
+    handleIfVertexNotInRange(vertex);
     std::size_t counter = 0;
 
     for (int edge = 0; edge < matrix.getRows(); ++edge) {

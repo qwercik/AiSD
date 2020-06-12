@@ -3,12 +3,18 @@ project(graphs)
 
 add_library(graphs
     src/graphs/Graph.cpp
+    src/graphs/GraphException.cpp
     src/graphs/IncidenceMatrix/UndirectedIncidenceMatrixGraph.cpp
     src/graphs/IncidenceMatrix/DirectedIncidenceMatrixGraph.cpp
     src/graphs/AdjacencyMatrix/DirectedAdjacencyMatrixGraph.cpp
     src/graphs/AdjacencyMatrix/UndirectedAdjacencyMatrixGraph.cpp
     src/graphs/AdjacencyList/DirectedAdjacencyListGraph.cpp
     src/graphs/AdjacencyList/UndirectedAdjacencyListGraph.cpp
+    
+    src/graphs/CycleFind/CycleFindException.cpp
+    src/graphs/CycleFind/EulerCycleFind.cpp
+    src/graphs/CycleFind/HamiltonCycleFind.cpp
+
     src/graphs/Search/BreadthFirstSearch.cpp
     src/graphs/Search/DeepFirstSearch.cpp
     src/graphs/TopologicalSort/BreadthFirstSort.cpp
