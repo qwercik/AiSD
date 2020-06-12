@@ -2,8 +2,8 @@
 #include <string>
 #include <cstddef>
 
-#include <graphs/Graph.hpp>
-#include <graphs/GraphException.hpp>
+#include <graphs/Graph/Graph.hpp>
+#include <graphs/Graph/GraphException.hpp>
 #include <graphs/io.hpp>
 
 Graph::Graph(std::size_t verticesNumber) {

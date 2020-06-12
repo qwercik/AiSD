@@ -1,17 +1,14 @@
 #pragma once
 
-#include <algorithm>
-#include <vector>
 #include <list>
 
-#include <graphs/DirectedGraph.hpp>
+#include <graphs/Graph/UndirectedGraph.hpp>
 #include <graphs/Matrix/Matrix.hpp>
-#include <graphs/io.hpp>
 
-class DirectedAdjacencyListGraph : public DirectedGraph {
+class UndirectedAdjacencyMatrixGraph : public UndirectedGraph {
 public:
-    DirectedAdjacencyListGraph(std::size_t verticesNumber);
-
+    UndirectedAdjacencyMatrixGraph(std::size_t verticesNumber);
+    
     virtual void addEdge(int startVertex, int endVertex) override;
     virtual void removeEdge(int startVertex, int endVertex) override;
     virtual bool containsEdge(int startVertex, int endVertex) const override;
@@ -25,5 +22,5 @@ public:
     virtual void dedicatedPrint(std::ostream& stream) const override;
 
 protected:
-    std::vector<std::list<int>> lists;
+    Matrix<int> matrix;
 };

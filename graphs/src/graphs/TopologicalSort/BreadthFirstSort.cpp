@@ -1,7 +1,7 @@
 #include <list>
 #include <queue>
 
-#include <graphs/DirectedGraph.hpp>
+#include <graphs/Graph/DirectedGraph.hpp>
 #include <graphs/TopologicalSort/BreadthFirstSort.hpp>
 #include <graphs/io.hpp>
 

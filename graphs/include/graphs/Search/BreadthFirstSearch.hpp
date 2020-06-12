@@ -1,6 +1,6 @@
 #pragma once
 
-#include <graphs/Graph.hpp>
+#include <graphs/Graph/Graph.hpp>
 #include <graphs/Search/Search.hpp>
 
 class BreadthFirstSearch : public Search {

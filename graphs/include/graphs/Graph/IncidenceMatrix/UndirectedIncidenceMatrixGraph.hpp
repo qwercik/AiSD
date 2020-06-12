@@ -1,14 +1,18 @@
 #pragma once
 
-#include <list>
+#include <iostream>
 
-#include <graphs/UndirectedGraph.hpp>
-#include <graphs/Matrix/Matrix.hpp>
+#include <graphs/Graph/UndirectedGraph.hpp>
+#include <graphs/Matrix/GrowableMatrix.hpp>
 
-class UndirectedAdjacencyMatrixGraph : public UndirectedGraph {
+// I assume that columns describes each vertex (because its number is constant)
+// and each row describes each edge (because its number can be modified)
+// Adding or removing rows is easier than doing the same for edges
+
+class UndirectedIncidenceMatrixGraph : public UndirectedGraph {
 public:
-    UndirectedAdjacencyMatrixGraph(std::size_t verticesNumber);
-    
+    UndirectedIncidenceMatrixGraph(std::size_t verticesNumber);
+
     virtual void addEdge(int startVertex, int endVertex) override;
     virtual void removeEdge(int startVertex, int endVertex) override;
     virtual bool containsEdge(int startVertex, int endVertex) const override;
@@ -20,7 +24,10 @@ public:
     virtual std::size_t getOutdegree(int vertex) const override;
 
     virtual void dedicatedPrint(std::ostream& stream) const override;
+    
+private:
+    int findEdgeRow(int startVertex, int endVertex) const;
 
 protected:
-    Matrix<int> matrix;
+    GrowableMatrix<int> matrix;
 };

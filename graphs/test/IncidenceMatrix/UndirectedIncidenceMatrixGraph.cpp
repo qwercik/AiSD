@@ -1,5 +1,5 @@
 #include <catch2/catch.hpp>
-#include <graphs/IncidenceMatrix/UndirectedIncidenceMatrixGraph.hpp>
+#include <graphs/Graph/IncidenceMatrix/UndirectedIncidenceMatrixGraph.hpp>
 
 TEST_CASE("Basic UndirectedIncidenceMatrixGraph operations", "[UndirectedIncidenceMatrixGraph]") {
     const int VERTICES = 10;

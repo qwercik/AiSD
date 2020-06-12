@@ -2,7 +2,7 @@
 
 #include <list>
 
-#include <graphs/UndirectedGraph.hpp>
+#include <graphs/Graph/UndirectedGraph.hpp>
 
 class CycleFind {
 public:

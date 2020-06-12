@@ -1,5 +1,5 @@
 #include <catch2/catch.hpp>
-#include <graphs/AdjacencyList/UndirectedAdjacencyListGraph.hpp>
+#include <graphs/Graph/AdjacencyList/UndirectedAdjacencyListGraph.hpp>
 
 TEST_CASE("Basic UndirectedAdjacencyListGraph operations", "[UndirectedAdjacencyListGraph]") {
     const int VERTICES = 10;

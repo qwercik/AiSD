@@ -2,7 +2,7 @@
 
 #include <list>
 
-#include <graphs/Graph.hpp>
+#include <graphs/Graph/Graph.hpp>
 
 class Search {
 public:

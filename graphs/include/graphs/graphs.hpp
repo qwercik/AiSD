@@ -1,12 +1,12 @@
 #pragma once
 
-#include <graphs/Graph.hpp>
-#include <graphs/AdjacencyMatrix/DirectedAdjacencyMatrixGraph.hpp>
-#include <graphs/AdjacencyMatrix/UndirectedAdjacencyMatrixGraph.hpp>
-#include <graphs/AdjacencyList/DirectedAdjacencyListGraph.hpp>
-#include <graphs/AdjacencyList/UndirectedAdjacencyListGraph.hpp>
-#include <graphs/IncidenceMatrix/DirectedIncidenceMatrixGraph.hpp>
-#include <graphs/IncidenceMatrix/UndirectedIncidenceMatrixGraph.hpp>
+#include <graphs/Graph/Graph.hpp>
+#include <graphs/Graph/AdjacencyMatrix/DirectedAdjacencyMatrixGraph.hpp>
+#include <graphs/Graph/AdjacencyMatrix/UndirectedAdjacencyMatrixGraph.hpp>
+#include <graphs/Graph/AdjacencyList/DirectedAdjacencyListGraph.hpp>
+#include <graphs/Graph/AdjacencyList/UndirectedAdjacencyListGraph.hpp>
+#include <graphs/Graph/IncidenceMatrix/DirectedIncidenceMatrixGraph.hpp>
+#include <graphs/Graph/IncidenceMatrix/UndirectedIncidenceMatrixGraph.hpp>
 #include <graphs/Search/Search.hpp>
 #include <graphs/Search/DeepFirstSearch.hpp>
 #include <graphs/Search/BreadthFirstSearch.hpp>

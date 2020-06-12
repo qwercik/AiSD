@@ -4,9 +4,9 @@
 #include <vector>
 #include <list>
 
-#include <graphs/UndirectedGraph.hpp>
-#include <graphs/GraphException.hpp>
-#include <graphs/AdjacencyList/UndirectedAdjacencyListGraph.hpp>
+#include <graphs/Graph/UndirectedGraph.hpp>
+#include <graphs/Graph/GraphException.hpp>
+#include <graphs/Graph/AdjacencyList/UndirectedAdjacencyListGraph.hpp>
 #include <graphs/Matrix/Matrix.hpp>
 #include <graphs/io.hpp>
 

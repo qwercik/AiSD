@@ -4,7 +4,7 @@
 #include <list>
 
 #include <graphs/CycleFind/CycleFind.hpp>
-#include <graphs/UndirectedGraph.hpp>
+#include <graphs/Graph/UndirectedGraph.hpp>
 #include <graphs/io.hpp>
 
 class HamiltonCycleFind : public CycleFind {

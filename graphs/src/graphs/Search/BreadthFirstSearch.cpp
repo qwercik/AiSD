@@ -2,7 +2,7 @@
 #include <queue>
 #include <vector>
 
-#include <graphs/Graph.hpp>
+#include <graphs/Graph/Graph.hpp>
 #include <graphs/Search/Search.hpp>
 #include <graphs/Search/BreadthFirstSearch.hpp>
 

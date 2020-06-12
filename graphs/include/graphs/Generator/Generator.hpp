@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include <algorithm>
 
-#include <graphs/Graph.hpp>
+#include <graphs/Graph/Graph.hpp>
 #include <graphs/random.hpp>
 #include <graphs/io.hpp>
 

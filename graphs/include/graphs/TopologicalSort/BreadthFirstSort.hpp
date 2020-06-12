@@ -2,7 +2,7 @@
 
 #include <list>
 
-#include <graphs/DirectedGraph.hpp>
+#include <graphs/Graph/DirectedGraph.hpp>
 #include <graphs/TopologicalSort/Sort.hpp>
 
 class BreadthFirstSort : public Sort {

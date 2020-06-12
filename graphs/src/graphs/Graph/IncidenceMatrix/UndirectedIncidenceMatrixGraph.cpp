@@ -1,9 +1,9 @@
 #include <iostream>
 #include <list>
 
-#include <graphs/UndirectedGraph.hpp>
+#include <graphs/Graph/UndirectedGraph.hpp>
 #include <graphs/Matrix/GrowableMatrix.hpp>
-#include <graphs/IncidenceMatrix/UndirectedIncidenceMatrixGraph.hpp>
+#include <graphs/Graph/IncidenceMatrix/UndirectedIncidenceMatrixGraph.hpp>
 
 UndirectedIncidenceMatrixGraph::UndirectedIncidenceMatrixGraph(std::size_t verticesNumber) :
     UndirectedGraph(verticesNumber),

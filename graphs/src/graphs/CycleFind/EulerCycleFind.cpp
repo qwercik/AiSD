@@ -4,7 +4,7 @@
 #include <graphs/CycleFind/CycleFind.hpp>
 #include <graphs/CycleFind/CycleFindException.hpp>
 #include <graphs/CycleFind/EulerCycleFind.hpp>
-#include <graphs/UndirectedGraph.hpp>
+#include <graphs/Graph/UndirectedGraph.hpp>
 #include <graphs/io.hpp>
 
 

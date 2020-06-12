@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include <graphs/UndirectedGraph.hpp>
+#include <graphs/Graph/UndirectedGraph.hpp>
 #include <graphs/Matrix/Matrix.hpp>
-#include <graphs/AdjacencyMatrix/UndirectedAdjacencyMatrixGraph.hpp>
+#include <graphs/Graph/AdjacencyMatrix/UndirectedAdjacencyMatrixGraph.hpp>
 
 UndirectedAdjacencyMatrixGraph::UndirectedAdjacencyMatrixGraph(std::size_t verticesNumber) :
     UndirectedGraph(verticesNumber),

@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include <graphs/DirectedGraph.hpp>
+#include <graphs/Graph/DirectedGraph.hpp>
 #include <graphs/Matrix/Matrix.hpp>
-#include <graphs/AdjacencyMatrix/DirectedAdjacencyMatrixGraph.hpp>
+#include <graphs/Graph/AdjacencyMatrix/DirectedAdjacencyMatrixGraph.hpp>
 
 DirectedAdjacencyMatrixGraph::DirectedAdjacencyMatrixGraph(std::size_t verticesNumber) :
     DirectedGraph(verticesNumber),

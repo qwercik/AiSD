@@ -1,9 +1,9 @@
 #include <iostream>
 #include <list>
 
-#include <graphs/DirectedGraph.hpp>
+#include <graphs/Graph/DirectedGraph.hpp>
 #include <graphs/Matrix/GrowableMatrix.hpp>
-#include <graphs/IncidenceMatrix/DirectedIncidenceMatrixGraph.hpp>
+#include <graphs/Graph/IncidenceMatrix/DirectedIncidenceMatrixGraph.hpp>
 
 DirectedIncidenceMatrixGraph::DirectedIncidenceMatrixGraph(std::size_t verticesNumber) :
     DirectedGraph(verticesNumber),

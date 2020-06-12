@@ -1,7 +1,7 @@
 #include <list>
 #include <vector>
 
-#include <graphs/Graph.hpp>
+#include <graphs/Graph/Graph.hpp>
 #include <graphs/Search/Search.hpp>
 #include <graphs/Search/DeepFirstSearch.hpp>
 

@@ -2,7 +2,7 @@
 
 #include <list>
 
-#include <graphs/DirectedGraph.hpp>
+#include <graphs/Graph/DirectedGraph.hpp>
 
 class Sort {
 public:

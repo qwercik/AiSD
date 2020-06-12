@@ -2,7 +2,7 @@
 
 #include <list>
 
-#include <graphs/DirectedGraph.hpp>
+#include <graphs/Graph/DirectedGraph.hpp>
 #include <graphs/Matrix/Matrix.hpp>
 
 class DirectedAdjacencyMatrixGraph : public DirectedGraph {

@@ -3,7 +3,7 @@
 #include <vector>
 #include <list>
 
-#include <graphs/Graph.hpp>
+#include <graphs/Graph/Graph.hpp>
 #include <graphs/Search/Search.hpp>
 
 class DeepFirstSearch : public Search {

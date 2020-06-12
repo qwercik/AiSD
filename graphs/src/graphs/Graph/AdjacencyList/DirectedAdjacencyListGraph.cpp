@@ -3,8 +3,8 @@
 #include <vector>
 #include <list>
 
-#include <graphs/DirectedGraph.hpp>
-#include <graphs/AdjacencyList/DirectedAdjacencyListGraph.hpp>
+#include <graphs/Graph/DirectedGraph.hpp>
+#include <graphs/Graph/AdjacencyList/DirectedAdjacencyListGraph.hpp>
 #include <graphs/Matrix/Matrix.hpp>
 #include <graphs/io.hpp>
 

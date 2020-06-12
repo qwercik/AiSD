@@ -2,14 +2,14 @@ cmake_minimum_required (VERSION 2.8.11)
 project(graphs)
 
 add_library(graphs
-    src/graphs/Graph.cpp
-    src/graphs/GraphException.cpp
-    src/graphs/IncidenceMatrix/UndirectedIncidenceMatrixGraph.cpp
-    src/graphs/IncidenceMatrix/DirectedIncidenceMatrixGraph.cpp
-    src/graphs/AdjacencyMatrix/DirectedAdjacencyMatrixGraph.cpp
-    src/graphs/AdjacencyMatrix/UndirectedAdjacencyMatrixGraph.cpp
-    src/graphs/AdjacencyList/DirectedAdjacencyListGraph.cpp
-    src/graphs/AdjacencyList/UndirectedAdjacencyListGraph.cpp
+    src/graphs/Graph/Graph.cpp
+    src/graphs/Graph/GraphException.cpp
+    src/graphs/Graph/IncidenceMatrix/UndirectedIncidenceMatrixGraph.cpp
+    src/graphs/Graph/IncidenceMatrix/DirectedIncidenceMatrixGraph.cpp
+    src/graphs/Graph/AdjacencyMatrix/DirectedAdjacencyMatrixGraph.cpp
+    src/graphs/Graph/AdjacencyMatrix/UndirectedAdjacencyMatrixGraph.cpp
+    src/graphs/Graph/AdjacencyList/DirectedAdjacencyListGraph.cpp
+    src/graphs/Graph/AdjacencyList/UndirectedAdjacencyListGraph.cpp
     
     src/graphs/CycleFind/CycleFindException.cpp
     src/graphs/CycleFind/EulerCycleFind.cpp

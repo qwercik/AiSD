@@ -1,5 +1,5 @@
 #include <catch2/catch.hpp>
-#include <graphs/AdjacencyMatrix/DirectedAdjacencyMatrixGraph.hpp>
+#include <graphs/Graph/AdjacencyMatrix/DirectedAdjacencyMatrixGraph.hpp>
 
 TEST_CASE("Basic DirectedAdjacencyMatrixGraph operations", "[DirectedAdjacencyMatrixGraph]") {
     const int VERTICES = 10;

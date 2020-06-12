@@ -1,17 +1,16 @@
 #pragma once
 
-#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <list>
 
-#include <graphs/DirectedGraph.hpp>
-#include <graphs/Matrix/GrowableMatrix.hpp>
+#include <graphs/Graph/UndirectedGraph.hpp>
+#include <graphs/Matrix/Matrix.hpp>
+#include <graphs/io.hpp>
 
-// I assume that columns describes each vertex (because its number is constant)
-// and each row describes each edge (because its number can be modified)
-// Adding or removing rows is easier than doing the same for edges
-
-class DirectedIncidenceMatrixGraph : public DirectedGraph {
+class UndirectedAdjacencyListGraph : public UndirectedGraph {
 public:
-    DirectedIncidenceMatrixGraph(std::size_t verticesNumber);
+    UndirectedAdjacencyListGraph(std::size_t verticesNumber);
 
     virtual void addEdge(int startVertex, int endVertex) override;
     virtual void removeEdge(int startVertex, int endVertex) override;
@@ -25,9 +24,6 @@ public:
 
     virtual void dedicatedPrint(std::ostream& stream) const override;
 
-private:
-    int findEdgeRow(int startVertex, int endVertex) const;
-
 protected:
-    GrowableMatrix<int> matrix;
+    std::vector<std::list<int>> lists;
 };
