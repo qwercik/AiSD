@@ -3,7 +3,8 @@
 #include <cstddef>
 
 #include <graphs/Graph/Graph.hpp>
-#include <graphs/Graph/GraphException.hpp>
+#include <graphs/Graph/GraphVertexOutOfRangeException.hpp>
+#include <graphs/Graph/GraphEdgeNotExistException.hpp>
 #include <graphs/io.hpp>
 
 Graph::Graph(std::size_t verticesNumber) {

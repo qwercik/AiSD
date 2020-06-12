@@ -4,6 +4,9 @@ project(graphs)
 add_library(graphs
     src/graphs/Graph/Graph.cpp
     src/graphs/Graph/GraphException.cpp
+    src/graphs/Graph/GraphVertexOutOfRangeException.cpp
+    src/graphs/Graph/GraphEdgeNotExistException.cpp
+    
     src/graphs/Graph/IncidenceMatrix/UndirectedIncidenceMatrixGraph.cpp
     src/graphs/Graph/IncidenceMatrix/DirectedIncidenceMatrixGraph.cpp
     src/graphs/Graph/AdjacencyMatrix/DirectedAdjacencyMatrixGraph.cpp
@@ -12,6 +15,7 @@ add_library(graphs
     src/graphs/Graph/AdjacencyList/UndirectedAdjacencyListGraph.cpp
     
     src/graphs/CycleFind/CycleFindException.cpp
+    src/graphs/CycleFind/CycleNotFoundException.cpp
     src/graphs/CycleFind/EulerCycleFind.cpp
     src/graphs/CycleFind/HamiltonCycleFind.cpp
 

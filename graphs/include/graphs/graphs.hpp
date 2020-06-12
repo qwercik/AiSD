@@ -20,5 +20,6 @@
 #include <graphs/Generator/OnlyEulerAndNotHamiltonGenerator.hpp>
 #include <graphs/Generator/OnlyHamiltonAndNotEulerGenerator.hpp>
 #include <graphs/CycleFind/CycleFindException.hpp>
+#include <graphs/CycleFind/CycleNotFoundException.hpp>
 #include <graphs/CycleFind/HamiltonCycleFind.hpp>
 #include <graphs/CycleFind/EulerCycleFind.hpp>
