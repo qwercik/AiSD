@@ -12,13 +12,16 @@ public:
 
     virtual void addEdge(int startVertex, int endVertex) = 0;
     virtual void removeEdge(int startVertex, int endVertex) = 0;
-
     virtual bool containsEdge(int startVertex, int endVertex) const = 0;
+    
     virtual std::list<int> getSuccessors(int vertex) const = 0;
     virtual std::list<int> getPredecessors(int vertex) const = 0;
 
+    virtual std::size_t getIndegree(int vertex) const = 0;
+    virtual std::size_t getOutdegree(int vertex) const = 0;
+
     virtual std::size_t maxEdges() const = 0;
-    std::size_t totalEdges() const;
+    virtual std::size_t totalEdges() const = 0;
     bool isComplete() const;
 
     void print(std::ostream& stream) const;

@@ -7,5 +7,5 @@
 
 class BreadthFirstSort : public Sort {
 public:
-    virtual std::list<int> sort(DirectedGraph& graph) const override;
+    virtual bool sort(DirectedGraph& graph, std::list<int>& sortingResult) const override;
 };

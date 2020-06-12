@@ -30,8 +30,12 @@ void directedGraphExample() {
     GraphGenerator gen;
     auto graph = gen.generate(VerticesNumber, SaturationPercents);
 
+    std::cout << "Postać wewnętrzna:\n";
     graph.dedicatedPrint(std::cout);
     std::cout << '\n';
+
+    std::cout << "Postać abstrakcyjna:\n";
+    std::cout << graph << '\n';
 
     DeepFirstSearch dfs;
     BreadthFirstSearch bfs;
@@ -39,10 +43,23 @@ void directedGraphExample() {
     std::cout << "Przeszukiwanie DFS: " << dfs.search(graph) << '\n';
     std::cout << '\n';
 
-    DeepFirstSort dfsort;
     BreadthFirstSort bfsort;
-    std::cout << "Sortowanie BFS: " << bfsort.sort(graph) << '\n';
-    std::cout << "Sortowanie DFS: " << dfsort.sort(graph) << '\n';
+    std::list<int> bfsList;
+    if (bfsort.sort(graph, bfsList)) {
+        std::cout << "Sortowanie BFS: " << bfsList << '\n';
+    } else {
+        std::cout << "Nie udało się posortować BFS\n";
+    }
+
+    DeepFirstSort dfsort;
+    std::list<int> dfsList;
+    if (dfsort.sort(graph, dfsList)) {
+        std::cout << "Sortowanie DFS: " << dfsList << '\n';
+    } else {
+        std::cout << "Nie udało się posortować DFS\n";
+    }
+
+    
     std::cout << '\n';
 }
 
@@ -53,8 +70,12 @@ void undirectedGraphExample() {
     GraphGenerator gen;
     auto graph = gen.generate(VerticesNumber, SaturationPercents);
 
+    std::cout << "Postać wewnętrzna:\n";
     graph.dedicatedPrint(std::cout);
     std::cout << '\n';
+
+    std::cout << "Postać abstrakcyjna:\n";
+    std::cout << graph << '\n';
 
     DeepFirstSearch dfs;
     BreadthFirstSearch bfs;
@@ -102,7 +123,6 @@ void cyclesFindExample() {
     printCyclesWithAsk(euler);
     std::cout << std::endl;
 }
-
 
 int main(void) {
     srand(time(nullptr));

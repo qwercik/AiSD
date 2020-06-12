@@ -48,6 +48,22 @@ std::list<int> UndirectedIncidenceMatrixGraph::getPredecessors(int vertex) const
     return getSuccessors(vertex);
 }
 
+std::size_t UndirectedIncidenceMatrixGraph::getIndegree(int vertex) const {
+    return getOutdegree(vertex);
+}
+#include <graphs/io.hpp>
+std::size_t UndirectedIncidenceMatrixGraph::getOutdegree(int vertex) const {
+    std::size_t counter = 0;
+
+    for (int edge = 0; edge < matrix.getRows(); ++edge) {
+        if (matrix.get(edge, vertex) == 1) {
+            counter++;
+        }
+    }
+
+    return counter;
+}
+
 int UndirectedIncidenceMatrixGraph::findEdgeRow(int startVertex, int endVertex) const {
     for (int row = 0; row < matrix.getRows(); ++row) {
         if (matrix.get(row, startVertex) == 1 && matrix.get(row, endVertex) == 1) {

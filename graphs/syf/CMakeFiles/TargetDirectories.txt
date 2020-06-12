@@ -1,0 +1,3 @@
+/home/eryk/Pulpit/Programowanie/AiSD/graphs/build/CMakeFiles/rebuild_cache.dir
+/home/eryk/Pulpit/Programowanie/AiSD/graphs/build/CMakeFiles/edit_cache.dir
+/home/eryk/Pulpit/Programowanie/AiSD/graphs/build/CMakeFiles/graphs.dir

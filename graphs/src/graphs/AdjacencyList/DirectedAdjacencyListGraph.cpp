@@ -33,15 +33,35 @@ std::list<int> DirectedAdjacencyListGraph::getSuccessors(int vertex) const {
 
 std::list<int> DirectedAdjacencyListGraph::getPredecessors(int vertex) const {
     std::list<int> predecessorsList;
-    for (int i = 0; i < lists.size(); ++i) {
-        auto vertexSuccessors = lists[i];
-        auto iterator = std::find(vertexSuccessors.begin(), vertexSuccessors.end(), vertex);
-        if (iterator != vertexSuccessors.end()) {
-            predecessorsList.push_back(vertex);
+    int current = 0;
+    for (const auto& vertexSuccessors : lists) {
+        for (auto successor : vertexSuccessors) {
+            if (successor == vertex) {
+                predecessorsList.push_back(current);
+            }
         }
+
+        current++;
     }
 
     return predecessorsList;
+}
+
+std::size_t DirectedAdjacencyListGraph::getIndegree(int vertex) const {
+    std::size_t counter = 0;
+    for (const auto& list : lists) {
+        for (auto successor : list) {
+            if (successor == vertex) {
+                counter++;
+            }
+        }
+    }
+
+    return counter;
+}
+
+std::size_t DirectedAdjacencyListGraph::getOutdegree(int vertex) const {
+    return lists[vertex].size();
 }
 
 void DirectedAdjacencyListGraph::dedicatedPrint(std::ostream& stream) const {

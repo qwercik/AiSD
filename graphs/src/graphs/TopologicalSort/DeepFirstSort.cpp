@@ -5,26 +5,36 @@
 #include <graphs/TopologicalSort/DeepFirstSort.hpp>
 #include <graphs/io.hpp>
 
-std::list<int> DeepFirstSort::sort(DirectedGraph& graph) const {
-    std::list<int> sortingResult;
-    std::vector<bool> visitedVertices(graph.getVerticesNumber(), false);
+bool DeepFirstSort::sort(DirectedGraph& graph, std::list<int>& sortingResult) const {
+    std::vector<VertexColor> verticesColors(graph.getVerticesNumber(), VertexColor::NOT_VISITED);
 
     for (int index = 0; index < graph.getVerticesNumber(); ++index) {
-        processVertex(graph, index, visitedVertices, sortingResult);
+        if (!processVertex(graph, index, verticesColors, sortingResult)) {
+            return false;
+        }
     }
 
-    return sortingResult;
+    return true;
 }
 
-void DeepFirstSort::processVertex(const DirectedGraph& graph, int vertex, std::vector<bool>& visitedVertices, std::list<int>& sortResult) const {
-    if (!visitedVertices[vertex]) {
-        visitedVertices[vertex] = true;
+bool DeepFirstSort::processVertex(const DirectedGraph& graph, int vertex, std::vector<VertexColor>& verticesColors, std::list<int>& sortResult) const {
+    if (verticesColors[vertex] == VertexColor::PROCESSING) {
+        return false;
+    }
+
+    if (verticesColors[vertex] == VertexColor::NOT_VISITED) {
+        verticesColors[vertex] = VertexColor::PROCESSING;
 
         auto successors = graph.getSuccessors(vertex);
         for (const auto& successor : successors) {
-            processVertex(graph, successor, visitedVertices, sortResult);
+            if (!processVertex(graph, successor, verticesColors, sortResult)) {
+                return false;
+            }
         }
 
+        verticesColors[vertex] = VertexColor::VISITED;
         sortResult.push_front(vertex);
     }
+
+    return true;
 }

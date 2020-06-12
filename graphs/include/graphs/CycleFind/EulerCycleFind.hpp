@@ -17,7 +17,7 @@ public:
     {
         startingVertex = 0;
         for (; startingVertex < graph.getVerticesNumber(); ++startingVertex) {
-            if (graph.getSuccessors(startingVertex).size() != 0) {
+            if (graph.getOutdegree(startingVertex) != 0) {
                 break;
             }
         }
@@ -50,7 +50,7 @@ public:
 private:
     bool checkExist() {
         for (int i = 0; i < graph.getVerticesNumber(); ++i) {
-            if (graph.getSuccessors(i).size() % 2 != 0) {
+            if (graph.getOutdegree(i) % 2 != 0) {
                 return false;
             }
         }

@@ -37,6 +37,14 @@ std::list<int> UndirectedAdjacencyListGraph::getPredecessors(int vertex) const {
     return lists[vertex];
 }
 
+std::size_t UndirectedAdjacencyListGraph::getIndegree(int vertex) const {
+    return lists[vertex].size();
+}
+
+std::size_t UndirectedAdjacencyListGraph::getOutdegree(int vertex) const {
+    return lists[vertex].size();
+}
+
 void UndirectedAdjacencyListGraph::dedicatedPrint(std::ostream& stream) const {
     print(stream);
 }

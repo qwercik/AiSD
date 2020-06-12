@@ -45,6 +45,24 @@ std::list<int> DirectedAdjacencyMatrixGraph::getPredecessors(int vertex) const {
     return vertices;
 }
 
+std::size_t DirectedAdjacencyMatrixGraph::getIndegree(int vertex) const {
+    std::size_t counter = 0;
+    for (int current = 0; current < verticesNumber; ++current) {
+        counter += matrix.get(current, vertex);
+    }
+
+    return counter;
+}
+
+std::size_t DirectedAdjacencyMatrixGraph::getOutdegree(int vertex) const {
+    std::size_t counter = 0;
+    for (int current = 0; current < verticesNumber; ++current) {
+        counter += matrix.get(vertex, current);
+    }
+
+    return counter;
+}
+
 void DirectedAdjacencyMatrixGraph::dedicatedPrint(std::ostream& stream) const {
     stream << matrix;
 }

@@ -1,10 +1,7 @@
 cmake_minimum_required (VERSION 2.8.11)
 project(graphs)
 
-include_directories(include/)
-add_executable(
-    graphs
-    src/main.cpp
+add_library(graphs
     src/graphs/Graph.cpp
     src/graphs/IncidenceMatrix/UndirectedIncidenceMatrixGraph.cpp
     src/graphs/IncidenceMatrix/DirectedIncidenceMatrixGraph.cpp
@@ -17,3 +14,28 @@ add_executable(
     src/graphs/TopologicalSort/BreadthFirstSort.cpp
     src/graphs/TopologicalSort/DeepFirstSort.cpp
 )
+
+target_include_directories(graphs PUBLIC include/)
+
+
+add_executable(example
+    example/main.cpp
+)
+
+target_include_directories(example PUBLIC include/)
+target_link_libraries(example PUBLIC graphs)
+
+
+add_executable(unit-tests
+    test/main.cpp
+    test/AdjacencyMatrix/UndirectedAdjacencyMatrixGraph.cpp
+    test/AdjacencyMatrix/DirectedAdjacencyMatrixGraph.cpp
+    test/IncidenceMatrix/UndirectedIncidenceMatrixGraph.cpp
+    test/IncidenceMatrix/DirectedIncidenceMatrixGraph.cpp
+    test/AdjacencyList/UndirectedAdjacencyListGraph.cpp
+    test/AdjacencyList/DirectedAdjacencyListGraph.cpp
+)
+
+target_include_directories(unit-tests PUBLIC include/)
+target_link_libraries(unit-tests PUBLIC graphs)
+

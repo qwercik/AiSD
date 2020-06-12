@@ -1,0 +1,6 @@
+#!/usr/bin/env python3
+import sys
+
+for line in sys.stdin:
+	print(' '.join(list(map(lambda x: str(int(x) - 1), line.split()))))
+

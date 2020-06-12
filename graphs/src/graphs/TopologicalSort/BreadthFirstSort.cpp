@@ -5,13 +5,11 @@
 #include <graphs/TopologicalSort/BreadthFirstSort.hpp>
 #include <graphs/io.hpp>
 
-std::list<int> BreadthFirstSort::sort(DirectedGraph& graph) const {
-    std::list<int> sortingResult;
+bool BreadthFirstSort::sort(DirectedGraph& graph, std::list<int>& sortingResult) const {
     std::queue<int> verticesWithoutPredecessors;
 
     for (std::size_t index = 0; index < graph.getVerticesNumber(); ++index) {
-        auto predecessors = graph.getPredecessors(index);
-        if (predecessors.size() == 0) {
+        if (graph.getIndegree(index) == 0) {
             verticesWithoutPredecessors.push(index);
         }
     }
@@ -24,8 +22,7 @@ std::list<int> BreadthFirstSort::sort(DirectedGraph& graph) const {
         for (const auto& successor : graph.getSuccessors(currentVertex)) {
             graph.removeEdge(currentVertex, successor);
             
-            auto successorPrecessors = graph.getPredecessors(successor);
-            if (successorPrecessors.size() == 0) {
+            if (graph.getIndegree(successor) == 0) {
                 verticesWithoutPredecessors.push(successor);
             }
         }
@@ -33,5 +30,5 @@ std::list<int> BreadthFirstSort::sort(DirectedGraph& graph) const {
 
     // Here graph should not have any edges
 
-    return sortingResult;
+    return true;
 }

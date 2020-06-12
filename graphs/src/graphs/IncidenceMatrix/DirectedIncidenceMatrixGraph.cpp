@@ -59,6 +59,31 @@ std::list<int> DirectedIncidenceMatrixGraph::getPredecessors(int vertex) const {
     return predecessors;
 }
 
+std::size_t DirectedIncidenceMatrixGraph::getIndegree(int vertex) const {
+    std::size_t counter = 0;
+
+    for (int edge = 0; edge < matrix.getRows(); ++edge) {
+        if (matrix.get(edge, vertex) == -1) {
+            counter++;
+        }
+    }
+
+    return counter;
+}
+
+std::size_t DirectedIncidenceMatrixGraph::getOutdegree(int vertex) const {
+    std::size_t counter = 0;
+
+    for (int edge = 0; edge < matrix.getRows(); ++edge) {
+        if (matrix.get(edge, vertex) == 1) {
+            counter++;
+        }
+    }
+
+    return counter;
+}
+
+
 int DirectedIncidenceMatrixGraph::findEdgeRow(int startVertex, int endVertex) const {
     for (int row = 0; row < matrix.getRows(); ++row) {
         if (matrix.get(row, startVertex) == 1 && matrix.get(row, endVertex) == -1) {

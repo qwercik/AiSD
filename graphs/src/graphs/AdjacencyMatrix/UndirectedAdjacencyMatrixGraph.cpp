@@ -42,6 +42,19 @@ std::list<int> UndirectedAdjacencyMatrixGraph::getPredecessors(int vertex) const
     return getSuccessors(vertex);
 }
 
+std::size_t UndirectedAdjacencyMatrixGraph::getIndegree(int vertex) const {
+    return getOutdegree(vertex);
+}
+
+std::size_t UndirectedAdjacencyMatrixGraph::getOutdegree(int vertex) const {
+    std::size_t counter = 0;
+    for (int current = 0; current < verticesNumber; ++current) {
+        counter += matrix.get(current, vertex);
+    }
+
+    return counter;
+}
+
 void UndirectedAdjacencyMatrixGraph::dedicatedPrint(std::ostream& stream) const {
     stream << matrix;
 }
