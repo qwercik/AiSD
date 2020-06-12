@@ -26,6 +26,9 @@ add_library(graphs
     src/graphs/TopologicalSort/TopologicalSortCycleFoundException.cpp
     src/graphs/TopologicalSort/TopologicalBreadthFirstSort.cpp
     src/graphs/TopologicalSort/TopologicalDeepFirstSort.cpp
+
+    src/graphs/Generator/GeneratorException.cpp
+    src/graphs/Generator/GeneratorSaturationOutOfRangeException.cpp
 )
 
 target_include_directories(graphs PUBLIC include/)

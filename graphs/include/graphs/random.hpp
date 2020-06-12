@@ -14,7 +14,7 @@ int randomInteger(int start, int end) {
 }
 
 template <int N>
-std::array<int, N> randomIntegers(int start, int end) {
+std::array<int, N> randomUniqueIntegers(int start, int end) {
     std::array<int, N> array;
     for (int currentIndex = 0; currentIndex < N; ++currentIndex) {
         do {

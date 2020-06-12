@@ -7,6 +7,7 @@
 #include <algorithm>
 
 #include <graphs/Graph/Graph.hpp>
+#include <graphs/Generator/GeneratorSaturationOutOfRangeException.hpp>
 #include <graphs/random.hpp>
 #include <graphs/io.hpp>
 
@@ -14,7 +15,7 @@
 template <typename GraphImplementation>
 class Generator {
 public:
-    virtual GraphImplementation generate(int verticesNumber, int saturatioNPercents = 50) const = 0;
+    virtual GraphImplementation generate(int verticesNumber, int saturationPercents = 50) const = 0;
 
 protected:
     /**
@@ -22,6 +23,12 @@ protected:
      * <saturationPercents> describe existing edges to max edges (in complete graph) proportion
      */
     int getEdgesNumberFromSaturation(Graph& graph, int saturationPercents = 50) const {
+        if (saturationPercents < 0 || saturationPercents > 100) {
+            throw GeneratorSaturationOutOfRangeException(
+                "Saturation value " + std::to_string(saturationPercents) + " is out of range [0, 100]"
+            );
+        }
+
         return graph.maxEdges() * (saturationPercents / 100.0);
     }
 
@@ -66,7 +73,7 @@ protected:
     void insertRandomEdgeToGraph(UndirectedGraph& graph, int verticesNumber) const {
         std::array<int, 2> newEdge;
         do {
-            newEdge = randomIntegers<2>(0, verticesNumber);
+            newEdge = randomUniqueIntegers<2>(0, verticesNumber);
         } while (graph.containsEdge(newEdge[0], newEdge[1]));
         graph.addEdge(newEdge[0], newEdge[1]);
     }
@@ -170,7 +177,7 @@ protected:
 
         for (int index = 0; index < verticesNumber - 1; ++index) {
             do {
-                successor = rand() % verticesNumber;
+                successor = randomInteger(0, verticesNumber);
             } while (visited[successor]);
             
             graph.addEdge(predecessor, successor);
@@ -194,7 +201,7 @@ protected:
         for (; insertedEdgesCounter < edgesNumber - 1; insertedEdgesCounter += 3) {
             std::array<int, 3> triangle;
             do {
-                triangle = randomIntegers<3>(0, verticesNumber);
+                triangle = randomUniqueIntegers<3>(0, verticesNumber);
             } while (!polygonCanBeInsertedToGraph<3>(graph, triangle));
             
             polygonInsert<3>(graph, triangle);
