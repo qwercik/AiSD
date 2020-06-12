@@ -4,11 +4,11 @@
 #include <vector>
 
 #include <graphs/Graph/DirectedGraph.hpp>
-#include <graphs/TopologicalSort/Sort.hpp>
+#include <graphs/TopologicalSort/TopologicalSort.hpp>
 
-class DeepFirstSort : public Sort {
+class TopologicalDeepFirstSort : public TopologicalSort {
 public:
-    virtual bool sort(DirectedGraph& graph, std::list<int>& sortingResult) const override;
+    virtual std::list<int> sort(DirectedGraph& graph) const override;
 
 private:
     enum class VertexColor {

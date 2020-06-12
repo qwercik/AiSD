@@ -6,14 +6,14 @@ add_library(graphs
     src/graphs/Graph/GraphException.cpp
     src/graphs/Graph/GraphVertexOutOfRangeException.cpp
     src/graphs/Graph/GraphEdgeNotExistException.cpp
-    
+
     src/graphs/Graph/IncidenceMatrix/UndirectedIncidenceMatrixGraph.cpp
     src/graphs/Graph/IncidenceMatrix/DirectedIncidenceMatrixGraph.cpp
     src/graphs/Graph/AdjacencyMatrix/DirectedAdjacencyMatrixGraph.cpp
     src/graphs/Graph/AdjacencyMatrix/UndirectedAdjacencyMatrixGraph.cpp
     src/graphs/Graph/AdjacencyList/DirectedAdjacencyListGraph.cpp
     src/graphs/Graph/AdjacencyList/UndirectedAdjacencyListGraph.cpp
-    
+
     src/graphs/CycleFind/CycleFindException.cpp
     src/graphs/CycleFind/CycleNotFoundException.cpp
     src/graphs/CycleFind/EulerCycleFind.cpp
@@ -21,8 +21,11 @@ add_library(graphs
 
     src/graphs/Search/BreadthFirstSearch.cpp
     src/graphs/Search/DeepFirstSearch.cpp
-    src/graphs/TopologicalSort/BreadthFirstSort.cpp
-    src/graphs/TopologicalSort/DeepFirstSort.cpp
+
+    src/graphs/TopologicalSort/TopologicalSortException.cpp
+    src/graphs/TopologicalSort/TopologicalSortCycleFoundException.cpp
+    src/graphs/TopologicalSort/TopologicalBreadthFirstSort.cpp
+    src/graphs/TopologicalSort/TopologicalDeepFirstSort.cpp
 )
 
 target_include_directories(graphs PUBLIC include/)

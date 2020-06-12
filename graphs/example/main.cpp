@@ -43,22 +43,21 @@ void directedGraphExample() {
     std::cout << "Przeszukiwanie DFS: " << dfs.search(graph) << '\n';
     std::cout << '\n';
 
-    BreadthFirstSort bfsort;
-    std::list<int> bfsList;
-    if (bfsort.sort(graph, bfsList)) {
-        std::cout << "Sortowanie BFS: " << bfsList << '\n';
-    } else {
+    TopologicalBreadthFirstSort bfsort;
+    try {
+        auto list = bfsort.sort(graph);
+        std::cout << "Sortowanie BFS: " << list << '\n';
+    } catch (TopologicalSortException& e) {
         std::cout << "Nie udało się posortować BFS\n";
     }
 
-    DeepFirstSort dfsort;
-    std::list<int> dfsList;
-    if (dfsort.sort(graph, dfsList)) {
-        std::cout << "Sortowanie DFS: " << dfsList << '\n';
-    } else {
+    TopologicalDeepFirstSort dfsort;
+    try {
+        auto list = dfsort.sort(graph);
+        std::cout << "Sortowanie DFS: " << list << '\n';
+    } catch (TopologicalSortException& e) {
         std::cout << "Nie udało się posortować DFS\n";
     }
-
     
     std::cout << '\n';
 }

@@ -2,10 +2,11 @@
 #include <queue>
 
 #include <graphs/Graph/DirectedGraph.hpp>
-#include <graphs/TopologicalSort/BreadthFirstSort.hpp>
+#include <graphs/TopologicalSort/TopologicalBreadthFirstSort.hpp>
 #include <graphs/io.hpp>
 
-bool BreadthFirstSort::sort(DirectedGraph& graph, std::list<int>& sortingResult) const {
+std::list<int> TopologicalBreadthFirstSort::sort(DirectedGraph& graph) const {
+    std::list<int> sortingResult;
     std::queue<int> verticesWithoutPredecessors;
 
     for (std::size_t index = 0; index < graph.getVerticesNumber(); ++index) {
@@ -30,5 +31,5 @@ bool BreadthFirstSort::sort(DirectedGraph& graph, std::list<int>& sortingResult)
 
     // Here graph should not have any edges
 
-    return true;
+    return sortingResult;
 }

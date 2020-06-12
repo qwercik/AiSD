@@ -2,22 +2,24 @@
 #include <vector>
 
 #include <graphs/Graph/DirectedGraph.hpp>
-#include <graphs/TopologicalSort/DeepFirstSort.hpp>
+#include <graphs/TopologicalSort/TopologicalDeepFirstSort.hpp>
+#include <graphs/TopologicalSort/TopologicalSortCycleFoundException.hpp>
 #include <graphs/io.hpp>
 
-bool DeepFirstSort::sort(DirectedGraph& graph, std::list<int>& sortingResult) const {
+std::list<int> TopologicalDeepFirstSort::sort(DirectedGraph& graph) const {
+    std::list<int> sortingResult;
     std::vector<VertexColor> verticesColors(graph.getVerticesNumber(), VertexColor::NOT_VISITED);
 
     for (int index = 0; index < graph.getVerticesNumber(); ++index) {
         if (!processVertex(graph, index, verticesColors, sortingResult)) {
-            return false;
+            throw TopologicalSortCycleFoundException("Graph shouldn\'t contain any cycles, but it does");
         }
     }
 
-    return true;
+    return sortingResult;
 }
 
-bool DeepFirstSort::processVertex(const DirectedGraph& graph, int vertex, std::vector<VertexColor>& verticesColors, std::list<int>& sortResult) const {
+bool TopologicalDeepFirstSort::processVertex(const DirectedGraph& graph, int vertex, std::vector<VertexColor>& verticesColors, std::list<int>& sortResult) const {
     if (verticesColors[vertex] == VertexColor::PROCESSING) {
         return false;
     }
