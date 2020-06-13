@@ -60,7 +60,6 @@ void findSingleCycle(int verticesNumber, int saturationPercents) {
         } catch (CycleNotFoundException& e) {
             // Do nothing
         }
-        
     }) << '\n';
 }
 
@@ -113,22 +112,24 @@ int main(int argc, char *argv[]) {
         {"sort-dfs-directed-adjacency-list", topologicalSortGraph<IterativeGenerator<DirectedAdjacencyListGraph>, TopologicalDeepFirstSort>},
         {"sort-dfs-directed-incidence-matrix", topologicalSortGraph<IterativeGenerator<DirectedIncidenceMatrixGraph>, TopologicalDeepFirstSort>},
 
-        {"generate-hamiltonian", generateGraph<BothEulerianAndHamiltonianGenerator<UndirectedAdjacencyMatrixGraph>>},
-        {"generate-nonhamiltonian", generateGraph<OnlyEulerianAndNotHamiltonianGenerator<UndirectedAdjacencyMatrixGraph>>},
+        {"generate-hamiltonian-eulerian", generateGraph<BothEulerianAndHamiltonianGenerator<UndirectedAdjacencyMatrixGraph>>},
 
         {"find-single-cycle-in-hamiltonian", findSingleCycle<BothEulerianAndHamiltonianGenerator<UndirectedAdjacencyMatrixGraph>, HamiltonianCycleFind>},
         {"find-all-cycles-in-hamiltonian", findAllCycles<BothEulerianAndHamiltonianGenerator<UndirectedAdjacencyMatrixGraph>, HamiltonianCycleFind>},
-        {"find-single-cycle-in-nonhamiltonian", findSingleCycle<OnlyEulerianAndNotHamiltonianGenerator<UndirectedAdjacencyMatrixGraph>, HamiltonianCycleFind>},
-        {"find-all-cycles-in-nonhamiltonian", findAllCycles<OnlyEulerianAndNotHamiltonianGenerator<UndirectedAdjacencyMatrixGraph>, HamiltonianCycleFind>},
+        {"find-any-cycle-in-nonhamiltonian", findSingleCycle<OnlyEulerianAndNotHamiltonianGenerator<UndirectedAdjacencyMatrixGraph>, HamiltonianCycleFind>},
 
         {"find-single-cycle-in-eulerian", findSingleCycle<BothEulerianAndHamiltonianGenerator<UndirectedAdjacencyMatrixGraph>, EulerianCycleFind>},
         {"find-all-cycles-in-eulerian", findAllCycles<BothEulerianAndHamiltonianGenerator<UndirectedAdjacencyMatrixGraph>, EulerianCycleFind>},
-        {"find-single-cycle-in-noneulerian", findSingleCycle<OnlyHamiltonianAndNotEulerianGenerator<UndirectedAdjacencyMatrixGraph>, EulerianCycleFind>},
-        {"find-all-cycles-in-noneulerian", findAllCycles<OnlyHamiltonianAndNotEulerianGenerator<UndirectedAdjacencyMatrixGraph>, EulerianCycleFind>},
+        {"find-any-cycle-in-noneulerian", findSingleCycle<OnlyHamiltonianAndNotEulerianGenerator<UndirectedAdjacencyMatrixGraph>, EulerianCycleFind>},
     };
 
-    if (argc != 4) {
+    if (argc != 3) {
         std::cerr << "Incorrect usage\n";
+        std::cerr << "Usage: " << argv[0] << " <action> <saturation>\n";
+        std::cerr << "Pass value <vertices> at standard input\n\n";
+        std::cerr << "Legend:\n";
+        std::cerr << "  ->  <vertices> - a positive integer representing number of vertices in graph\n";
+        std::cerr << "  ->  <saturation> a positive integer from range [0, 100] representing saturation coefficient\n";
         return 1;
     }
 
@@ -138,15 +139,16 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    int verticesNumber = std::stoi(argv[2]);
-    if (verticesNumber <= 0) {
-        std::cerr << "Vertices number should be a positive integer\n";
+    int saturationPercents = std::stoi(argv[2]);
+    if (saturationPercents <= 0 || saturationPercents >= 100) {
+        std::cerr << "Saturation percents should be from range [0, 100]\n";
         return 1;
     }
 
-    int saturationPercents = std::stoi(argv[3]);
-    if (saturationPercents <= 0 || saturationPercents >= 100) {
-        std::cerr << "Saturation percents should be from range [0, 100]\n";
+    int verticesNumber;
+    std::cin >> verticesNumber;
+    if (verticesNumber <= 0) {
+        std::cerr << "Vertices number should be a positive integer\n";
         return 1;
     }
 

@@ -21,10 +21,14 @@ def constantList(size):
 def aShapeList(size):
 	return [i for i in range(int(size / 2))] + [i for i in range(int(size / 2), -1, -1)]
 
+def external(size):
+	return [size]
+
 functions = {
 	'random': randomList,
 	'ascending': ascendingList,
 	'descending': descendingList,
 	'constant': constantList,
-	'a-shape': aShapeList
+	'a-shape': aShapeList,
+	'external': external
 }

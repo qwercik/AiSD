@@ -68,3 +68,5 @@ add_executable(benchmark
 )
 target_include_directories(benchmark PUBLIC include/)
 target_link_libraries(benchmark PUBLIC graphs)
+
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall -Wextra -Wpedantic -O2")

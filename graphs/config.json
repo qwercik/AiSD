@@ -1,0 +1,208 @@
+{
+	"tests": [
+		{
+			"name": "Generowanie acyklicznego grafu skierowanego o stopniu nasycenia 50%",
+			"size_range": {
+				"start": 50,
+				"step": 50,
+				"count": 10
+			},
+			"repeats": 1,
+			"generate_function": "external",
+			"applications": [
+				{ "name": "Macierz sąsiedztwa", "command": "./graphs/build/benchmark generate-directed-adjacency-matrix 50", "external_timer": true },
+				{ "name": "Lista sąsiedztwa", "command": "./graphs/build/benchmark generate-directed-adjacency-list 50", "external_timer": true },
+				{ "name": "Macierz incydencji", "command": "./graphs/build/benchmark generate-directed-incidence-matrix 50", "external_timer": true }
+			]
+		},
+		{
+			"name": "Generowanie acyklicznego grafu nieskierowanego o stopniu nasycenia 50%",
+			"size_range": {
+				"start": 100,
+				"step": 100,
+				"count": 10
+			},
+			"repeats": 1,
+			"generate_function": "external",
+			"applications": [
+				{ "name": "Macierz sąsiedztwa", "command": "./graphs/build/benchmark generate-undirected-adjacency-matrix 50", "external_timer": true },
+				{ "name": "Lista sąsiedztwa", "command": "./graphs/build/benchmark generate-undirected-adjacency-list 50", "external_timer": true },
+				{ "name": "Macierz incydencji", "command": "./graphs/build/benchmark generate-undirected-incidence-matrix 50", "external_timer": true }
+			]
+		},
+		{
+			"name": "Przeszukiwanie BFS grafu skierowanego o stopniu nasycenia 50%",
+			"size_range": {
+				"start": 50,
+				"step": 50,
+				"count": 10
+			},
+			"repeats": 1,
+			"generate_function": "external",
+			"applications": [
+				{ "name": "Macierz sąsiedztwa", "command": "./graphs/build/benchmark search-bfs-directed-adjacency-matrix 50", "external_timer": true },
+				{ "name": "Lista sąsiedztwa", "command": "./graphs/build/benchmark search-bfs-directed-adjacency-list 50", "external_timer": true },
+				{ "name": "Macierz incydencji", "command": "./graphs/build/benchmark search-bfs-directed-incidence-matrix 50", "external_timer": true }
+			]
+		},
+		{
+			"name": "Przeszukiwanie BFS grafu nieskierowanego o stopniu nasycenia 50%",
+			"size_range": {
+				"start": 50,
+				"step": 50,
+				"count": 10
+			},
+			"repeats": 1,
+			"generate_function": "external",
+			"applications": [
+				{ "name": "Macierz sąsiedztwa", "command": "./graphs/build/benchmark search-bfs-undirected-adjacency-matrix 50", "external_timer": true },
+				{ "name": "Lista sąsiedztwa", "command": "./graphs/build/benchmark search-bfs-undirected-adjacency-list 50", "external_timer": true },
+				{ "name": "Macierz incydencji", "command": "./graphs/build/benchmark search-bfs-undirected-incidence-matrix 50", "external_timer": true }
+			]
+		},
+		{
+			"name": "Przeszukiwanie DFS grafu skierowanego o stopniu nasycenia 50%",
+			"size_range": {
+				"start": 50,
+				"step": 50,
+				"count": 10
+			},
+			"repeats": 1,
+			"generate_function": "external",
+			"applications": [
+				{ "name": "Macierz sąsiedztwa", "command": "./graphs/build/benchmark search-dfs-directed-adjacency-matrix 50", "external_timer": true },
+				{ "name": "Lista sąsiedztwa", "command": "./graphs/build/benchmark search-dfs-directed-adjacency-list 50", "external_timer": true },
+				{ "name": "Macierz incydencji", "command": "./graphs/build/benchmark search-dfs-directed-incidence-matrix 50", "external_timer": true }
+			]
+		},
+		{
+			"name": "Przeszukiwanie DFS grafu nieskierowanego o stopniu nasycenia 50%",
+			"size_range": {
+				"start": 50,
+				"step": 50,
+				"count": 10
+			},
+			"repeats": 1,
+			"generate_function": "external",
+			"applications": [
+				{ "name": "Macierz sąsiedztwa", "command": "./graphs/build/benchmark search-dfs-undirected-adjacency-matrix 50", "external_timer": true },
+				{ "name": "Lista sąsiedztwa", "command": "./graphs/build/benchmark search-dfs-undirected-adjacency-list 50", "external_timer": true },
+				{ "name": "Macierz incydencji", "command": "./graphs/build/benchmark search-dfs-undirected-incidence-matrix 50", "external_timer": true }
+			]
+		},
+		{
+			"name": "Sortowanie topologiczne BFS acyklicznego grafu skierowanego o stopniu nasycenia 50%",
+			"size_range": {
+				"start": 50,
+				"step": 50,
+				"count": 10
+			},
+			"repeats": 1,
+			"generate_function": "external",
+			"applications": [
+				{ "name": "Macierz sąsiedztwa", "command": "./graphs/build/benchmark sort-bfs-directed-adjacency-matrix 50", "external_timer": true },
+				{ "name": "Lista sąsiedztwa", "command": "./graphs/build/benchmark sort-bfs-directed-adjacency-list 50", "external_timer": true },
+				{ "name": "Macierz incydencji", "command": "./graphs/build/benchmark sort-bfs-directed-incidence-matrix 50", "external_timer": true }
+			]
+		},
+		{
+			"name": "Sortowanie topologiczne DFS acyklicznego grafu skierowanego o stopniu nasycenia 50%",
+			"size_range": {
+				"start": 50,
+				"step": 50,
+				"count": 10
+			},
+			"repeats": 1,
+			"generate_function": "external",
+			"applications": [
+				{ "name": "Macierz sąsiedztwa", "command": "./graphs/build/benchmark sort-dfs-directed-adjacency-matrix 50", "external_timer": true },
+				{ "name": "Lista sąsiedztwa", "command": "./graphs/build/benchmark sort-dfs-directed-adjacency-list 50", "external_timer": true },
+				{ "name": "Macierz incydencji", "command": "./graphs/build/benchmark sort-dfs-directed-incidence-matrix 50", "external_timer": true }
+			]
+		},
+		{
+			"name": "Generowanie grafu będącego jednocześnie grafem Hamiltona i Eulera",
+			"size_range": {
+				"start": 1000,
+				"step": 1000,
+				"count": 10
+			},
+			"repeats": 1,
+			"generate_function": "external",
+			"applications": [
+				{ "name": "Stopień nasycenia 30%", "command": "./graphs/build/benchmark generate-hamiltonian-eulerian 30", "external_timer": true },
+				{ "name": "Stopień nasycenia 70%", "command": "./graphs/build/benchmark generate-hamiltonian-eulerian 70", "external_timer": true }
+			]
+		},
+		{
+			"name": "Wyszukiwanie pojedynczego cyklu Hamiltona w grafie Hamiltona",
+			"size_range": {
+				"start": 100,
+				"step": 100,
+				"count": 10
+			},
+			"repeats": 1,
+			"generate_function": "external",
+			"applications": [
+				{ "name": "Stopień nasycenia 30%", "command": "./graphs/build/benchmark find-single-cycle-in-hamiltonian 30", "external_timer": true },
+				{ "name": "Stopień nasycenia 70%", "command": "./graphs/build/benchmark find-single-cycle-in-hamiltonian 70", "external_timer": true }
+			]
+		},
+		{
+			"name": "Wyszukiwanie wszystkich cyklów Hamiltona w grafie Hamiltona",
+			"size_range": {
+				"start": 5,
+				"step": 1,
+				"count": 10
+			},
+			"repeats": 1,
+			"generate_function": "external",
+			"applications": [
+				{ "name": "Stopień nasycenia 30%", "command": "./graphs/build/benchmark find-all-cycles-in-hamiltonian 30", "external_timer": true },
+				{ "name": "Stopień nasycenia 70%", "command": "./graphs/build/benchmark find-all-cycles-in-hamiltonian 70", "external_timer": true }
+			]
+		},
+		{
+			"name": "Wyszukiwanie jakiegokolwiek cyklu Hamiltona w grafie niebędącym grafem Hamiltona",
+			"size_range": {
+				"start": 5,
+				"step": 1,
+				"count": 10
+			},
+			"repeats": 1,
+			"generate_function": "external",
+			"applications": [
+				{ "name": "Stopień nasycenia 30%", "command": "./graphs/build/benchmark find-any-cycle-in-nonhamiltonian 30", "external_timer": true },
+				{ "name": "Stopień nasycenia 70%", "command": "./graphs/build/benchmark find-any-cycle-in-nonhamiltonian 70", "external_timer": true }
+			]
+		},
+		{
+			"name": "Wyszukiwanie pojedynczego cyklu Eulera w grafie Eulera",
+			"size_range": {
+				"start": 100,
+				"step": 100,
+				"count": 10
+			},
+			"repeats": 1,
+			"generate_function": "external",
+			"applications": [
+				{ "name": "Stopień nasycenia 30%", "command": "./graphs/build/benchmark find-single-cycle-in-eulerian 30", "external_timer": true },
+				{ "name": "Stopień nasycenia 70%", "command": "./graphs/build/benchmark find-single-cycle-in-eulerian 70", "external_timer": true }
+			]
+		},
+		{
+			"name": "Wyszukiwanie wszystkich cyklów Eulera w grafie Eulera",
+			"size_range": {
+				"start": 5,
+				"step": 1,
+				"count": 10
+			},
+			"repeats": 1,
+			"generate_function": "external",
+			"applications": [
+				{ "name": "Stopień nasycenia 30%", "command": "./graphs/build/benchmark find-all-cycles-in-eulerian 30", "external_timer": true },
+				{ "name": "Stopień nasycenia 70%", "command": "./graphs/build/benchmark find-all-cycles-in-eulerian 70", "external_timer": true }
+			]
+		}
+	]
+}
