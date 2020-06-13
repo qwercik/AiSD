@@ -36,13 +36,6 @@ add_library(graphs
 target_include_directories(graphs PUBLIC include/)
 
 
-add_executable(example
-    examples/example.cpp
-)
-
-target_include_directories(example PUBLIC include/)
-target_link_libraries(example PUBLIC graphs)
-
 
 add_executable(unit-tests
     test/main.cpp
@@ -61,3 +54,17 @@ add_executable(unit-tests
 target_include_directories(unit-tests PUBLIC include/)
 target_link_libraries(unit-tests PUBLIC graphs)
 
+
+
+add_executable(example
+    examples/example.cpp
+)
+target_include_directories(example PUBLIC include/)
+target_link_libraries(example PUBLIC graphs)
+
+
+add_executable(benchmark
+    examples/benchmark.cpp
+)
+target_include_directories(benchmark PUBLIC include/)
+target_link_libraries(benchmark PUBLIC graphs)
