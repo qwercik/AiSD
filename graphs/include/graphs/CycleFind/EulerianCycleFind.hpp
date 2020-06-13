@@ -9,9 +9,9 @@
 
 /** Remember that graph structure is destroyed after using this class!
  **/
-class EulerCycleFind : public CycleFind {
+class EulerianCycleFind : public CycleFind {
 public:
-    EulerCycleFind(UndirectedGraph& graph);
+    EulerianCycleFind(UndirectedGraph& graph);
 
     virtual std::list<int> find() override;
 
@@ -19,7 +19,7 @@ private:
     bool checkExist();
 
     /**
-     * Returns true if Euler cycle has been already found
+     * Returns true if Eulerian cycle has been already found
      */
     bool findNextCycle();
 

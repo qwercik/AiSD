@@ -113,15 +113,15 @@ void cyclesFindExample() {
     auto graph = gen.generate(VerticesNumber, SaturationPercents);
     std::cout << graph << '\n';
 
-    EulerCycleFind euler(graph);
-    HamiltonCycleFind hamilton(graph);
+    EulerianCycleFind Eulerian(graph);
+    HamiltonianCycleFind Hamiltonian(graph);
 
     std::cout << "Cykle Hamiltona:" << std::endl;
-    printCyclesWithAsk(hamilton);
+    printCyclesWithAsk(Hamiltonian);
     std::cout << std::endl;
 
     std::cout << "Obwody Eulera:" << std::endl;
-    printCyclesWithAsk(euler);
+    printCyclesWithAsk(Eulerian);
     std::cout << std::endl;
 }
 
@@ -138,10 +138,10 @@ int main(void) {
         directedGraphExample<IterativeGenerator<DirectedAdjacencyListGraph>, 10, 50>,
         undirectedGraphExample<IterativeGenerator<UndirectedAdjacencyListGraph>, 10, 50>,
 
-        cyclesFindExample<BothEulerAndHamiltonGenerator<UndirectedAdjacencyMatrixGraph>, 10, 30>,
-        cyclesFindExample<OnlyEulerAndNotHamiltonGenerator<UndirectedAdjacencyMatrixGraph>, 10, 30>,
-        cyclesFindExample<OnlyHamiltonAndNotEulerGenerator<UndirectedAdjacencyMatrixGraph>, 10, 30>,
-        cyclesFindExample<NeitherEulerNorHamiltonGenerator<UndirectedAdjacencyMatrixGraph>, 10, 30>,
+        cyclesFindExample<BothEulerianAndHamiltonianGenerator<UndirectedAdjacencyMatrixGraph>, 10, 30>,
+        cyclesFindExample<OnlyEulerianAndNotHamiltonianGenerator<UndirectedAdjacencyMatrixGraph>, 10, 30>,
+        cyclesFindExample<OnlyHamiltonianAndNotEulerianGenerator<UndirectedAdjacencyMatrixGraph>, 10, 30>,
+        cyclesFindExample<NeitherEulerianNorHamiltonianGenerator<UndirectedAdjacencyMatrixGraph>, 10, 30>,
     };
 
     printSeparator();

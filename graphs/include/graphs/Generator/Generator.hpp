@@ -108,11 +108,11 @@ protected:
 
     /**
      * Use this function very carefully!
-     * It's possible to graph with given <verticesNumber> and <edgesNumber> cannot be Euler graph
+     * It's possible to graph with given <verticesNumber> and <edgesNumber> cannot be Eulerian graph
      * In this case the function will be executing for some time (which can be really long)
      * And it's not guarantee it end with success
      */
-    bool fillEulerUsingBactracking(UndirectedGraph& graph, int verticesNumber, int edgesNumber) const {
+    bool fillEulerianUsingBactracking(UndirectedGraph& graph, int verticesNumber, int edgesNumber) const {
         std::list<int> path;
         path.push_back(0);
         int currentVertex = 0;
@@ -167,7 +167,7 @@ protected:
      * It fill graph with randomly generated cycle of <verticesNumber> edges
      * It return number of filled edges, so it's <verticesNumber>
      */
-    int fillWithSmallestHamiltonCycle(UndirectedGraph& graph, int verticesNumber) const {
+    int fillWithSmallestHamiltonianCycle(UndirectedGraph& graph, int verticesNumber) const {
         const int startingVertex = 0;
         
         std::vector<bool> visited(verticesNumber, false);
@@ -192,11 +192,11 @@ protected:
 
     /**
      * Function assumes that every graph vertice has even degree (isolated vertices allowed)
-     * It's not possible to create Euler graph for every (<verticesNumber>, <edgesNumber>) pair
+     * It's not possible to create Eulerian graph for every (<verticesNumber>, <edgesNumber>) pair
      * So the function try to do it best it's possible (an absolute error should be 0 or 1)
      * Function returns number of inserted edges
      */
-    int fillWithBestMatchedEulerCycle(UndirectedGraph& graph, int verticesNumber, int edgesNumber) const {
+    int fillWithBestMatchedEulerianCycle(UndirectedGraph& graph, int verticesNumber, int edgesNumber) const {
         int insertedEdgesCounter = 0;
         for (; insertedEdgesCounter < edgesNumber - 1; insertedEdgesCounter += 3) {
             std::array<int, 3> triangle;
@@ -211,8 +211,8 @@ protected:
     }
 
 
-    void fillHamilton(UndirectedGraph& graph, int verticesNumber, int edgesNumber) const {
-        fillWithSmallestHamiltonCycle(graph, verticesNumber);
+    void fillHamiltonian(UndirectedGraph& graph, int verticesNumber, int edgesNumber) const {
+        fillWithSmallestHamiltonianCycle(graph, verticesNumber);
         fillRandomly(graph, verticesNumber, edgesNumber - verticesNumber);
     }
 };

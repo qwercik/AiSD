@@ -1,7 +1,7 @@
 #include <catch2/catch.hpp>
 #include <graphs/graphs.hpp>
 
-TEST_CASE("Generate complete graph and find all Euler cycles", "[EulerianGraph]") {
+TEST_CASE("Generate complete graph and find all Eulerian cycles", "[EulerianGraph]") {
     const int VERTICES = 5;
     // Value from the following document: http://www.algana.co.uk/publications/Counting.pdf
     const int TOTAL_EULERIAN_CYCLES = 528;
@@ -13,7 +13,7 @@ TEST_CASE("Generate complete graph and find all Euler cycles", "[EulerianGraph]"
         }
     }
 
-    EulerCycleFind finder(graph);
+    EulerianCycleFind finder(graph);
     std::list<int> cycle;
     int counter = 0;
     while (true) {
@@ -32,10 +32,10 @@ TEST_CASE("Generate Eulerian graph and find at least one Eulerian cycle", "[Eule
     const int VERTICES = 10;
     const int SATURATION = 30;
 
-    BothEulerAndHamiltonGenerator<UndirectedIncidenceMatrixGraph> gen;
+    BothEulerianAndHamiltonianGenerator<UndirectedIncidenceMatrixGraph> gen;
     auto graph = gen.generate(VERTICES, SATURATION);
 
-    EulerCycleFind finder(graph);
+    EulerianCycleFind finder(graph);
     std::list<int> cycle;
     bool cycleFound = true;
     try {
@@ -47,14 +47,14 @@ TEST_CASE("Generate Eulerian graph and find at least one Eulerian cycle", "[Eule
     REQUIRE(cycleFound);
 }
 
-TEST_CASE("Generate graph which is not Eulerian and try to find at least one Eulerian cycles", "[HamiltonianGraph]") {
+TEST_CASE("Generate graph which is not Eulerian and try to find at least one Eulerian cycles", "[EulerianGraph]") {
     const int VERTICES = 10;
     const int SATURATION = 30;
 
-    OnlyHamiltonAndNotEulerGenerator<UndirectedIncidenceMatrixGraph> gen;
+    OnlyHamiltonianAndNotEulerianGenerator<UndirectedIncidenceMatrixGraph> gen;
     auto graph = gen.generate(VERTICES, SATURATION);
 
-    EulerCycleFind finder(graph);
+    EulerianCycleFind finder(graph);
     std::list<int> cycle;
     bool cycleNotFound = false;
     try {

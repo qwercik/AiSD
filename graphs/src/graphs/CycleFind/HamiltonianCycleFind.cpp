@@ -3,12 +3,12 @@
 
 #include <graphs/CycleFind/CycleFind.hpp>
 #include <graphs/CycleFind/CycleNotFoundException.hpp>
-#include <graphs/CycleFind/HamiltonCycleFind.hpp>
+#include <graphs/CycleFind/HamiltonianCycleFind.hpp>
 #include <graphs/Graph/UndirectedGraph.hpp>
 #include <graphs/io.hpp>
 
 
-HamiltonCycleFind::HamiltonCycleFind(UndirectedGraph& graph) :
+HamiltonianCycleFind::HamiltonianCycleFind(UndirectedGraph& graph) :
     graph(graph),
     visited(graph.getVerticesNumber(), false),
     currentVertex(START_VERTEX)
@@ -18,15 +18,15 @@ HamiltonCycleFind::HamiltonCycleFind(UndirectedGraph& graph) :
     visited[currentVertex] = true;
 }
 
-std::list<int> HamiltonCycleFind::find() {
+std::list<int> HamiltonianCycleFind::find() {
     if (!findNextCycle()) {
-        throw CycleNotFoundException("Next Hamilton cycle hasn\'t been found");
+        throw CycleNotFoundException("Next Hamiltonian cycle hasn\'t been found");
     }
 
     return path;
 }
 
-bool HamiltonCycleFind::findNextCycle() {
+bool HamiltonianCycleFind::findNextCycle() {
     while (!path.empty() && !successors.empty()) {
         while (successors.back().empty()) {
             visited[path.back()] = false;

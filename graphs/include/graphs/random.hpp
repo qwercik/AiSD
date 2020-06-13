@@ -9,9 +9,7 @@
  * <start> is included and <end> is excluded from generated range
  * For example (3, 7) means range {3, 4, 5, 6}
  */
-int randomInteger(int start, int end) {
-    return start + rand() % (end - start);
-}
+int randomInteger(int start, int end);
 
 template <int N>
 std::array<int, N> randomUniqueIntegers(int start, int end) {

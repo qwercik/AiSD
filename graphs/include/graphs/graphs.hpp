@@ -28,13 +28,13 @@
 #include <graphs/Generator/Generator.hpp>
 #include <graphs/Generator/IterativeGenerator.hpp>
 #include <graphs/Generator/RandomGenerator.hpp>
-#include <graphs/Generator/BothEulerAndHamiltonGenerator.hpp>
-#include <graphs/Generator/NeitherEulerNorHamiltonGenerator.hpp>
-#include <graphs/Generator/OnlyEulerAndNotHamiltonGenerator.hpp>
-#include <graphs/Generator/OnlyHamiltonAndNotEulerGenerator.hpp>
+#include <graphs/Generator/BothEulerianAndHamiltonianGenerator.hpp>
+#include <graphs/Generator/NeitherEulerianNorHamiltonianGenerator.hpp>
+#include <graphs/Generator/OnlyEulerianAndNotHamiltonianGenerator.hpp>
+#include <graphs/Generator/OnlyHamiltonianAndNotEulerianGenerator.hpp>
 
 #include <graphs/CycleFind/CycleFind.hpp>
 #include <graphs/CycleFind/CycleFindException.hpp>
 #include <graphs/CycleFind/CycleNotFoundException.hpp>
-#include <graphs/CycleFind/HamiltonCycleFind.hpp>
-#include <graphs/CycleFind/EulerCycleFind.hpp>
+#include <graphs/CycleFind/HamiltonianCycleFind.hpp>
+#include <graphs/CycleFind/EulerianCycleFind.hpp>

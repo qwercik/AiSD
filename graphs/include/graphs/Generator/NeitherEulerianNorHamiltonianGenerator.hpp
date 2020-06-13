@@ -1,16 +1,16 @@
 #pragma once
 
 #include <graphs/Generator/Generator.hpp>
-#include <graphs/Generator/BothEulerAndHamiltonGenerator.hpp>
+#include <graphs/Generator/OnlyEulerianAndNotHamiltonianGenerator.hpp>
 
 template <typename GraphImplementation>
-class OnlyHamiltonAndNotEulerGenerator : public Generator<GraphImplementation> {
+class NeitherEulerianNorHamiltonianGenerator : public Generator<GraphImplementation> {
 public:
     virtual GraphImplementation generate(int verticesNumber, int saturationPercents = 50) const override {
-        BothEulerAndHamiltonGenerator<GraphImplementation> gen;
+        OnlyEulerianAndNotHamiltonianGenerator<GraphImplementation> gen;
 
         auto graph = gen.generate(verticesNumber, saturationPercents);
-        this->insertRandomEdgeToGraph(graph, verticesNumber);
+        this->insertRandomEdgeToGraph(graph, verticesNumber - 1);
 
         return graph;
     }

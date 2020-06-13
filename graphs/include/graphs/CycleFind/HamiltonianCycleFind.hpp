@@ -7,14 +7,14 @@
 #include <graphs/Graph/UndirectedGraph.hpp>
 #include <graphs/io.hpp>
 
-class HamiltonCycleFind : public CycleFind {
+class HamiltonianCycleFind : public CycleFind {
 public:
-    HamiltonCycleFind(UndirectedGraph& graph);
+    HamiltonianCycleFind(UndirectedGraph& graph);
     virtual std::list<int> find() override;
 
 private:
     /**
-     * Returns true if Hamilton cycle has been already found
+     * Returns true if Hamiltonian cycle has been already found
      * Otherwise returns false
      */
     bool findNextCycle();

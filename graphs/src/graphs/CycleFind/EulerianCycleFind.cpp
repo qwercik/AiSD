@@ -3,12 +3,12 @@
 
 #include <graphs/CycleFind/CycleFind.hpp>
 #include <graphs/CycleFind/CycleNotFoundException.hpp>
-#include <graphs/CycleFind/EulerCycleFind.hpp>
+#include <graphs/CycleFind/EulerianCycleFind.hpp>
 #include <graphs/Graph/UndirectedGraph.hpp>
 #include <graphs/io.hpp>
 
 
-EulerCycleFind::EulerCycleFind(UndirectedGraph& graph) :
+EulerianCycleFind::EulerianCycleFind(UndirectedGraph& graph) :
     graph(graph),
     anyCycleExist(true)
 {
@@ -30,15 +30,15 @@ EulerCycleFind::EulerCycleFind(UndirectedGraph& graph) :
     totalEdges = graph.totalEdges();
 }
 
-std::list<int> EulerCycleFind::find() {
+std::list<int> EulerianCycleFind::find() {
     if (!anyCycleExist || !findNextCycle()) {
-        throw CycleNotFoundException("Next Euler cycle hasn\'t been found");
+        throw CycleNotFoundException("Next Eulerian cycle hasn\'t been found");
     }
 
     return path;
 }
 
-bool EulerCycleFind::checkExist() {
+bool EulerianCycleFind::checkExist() {
     for (int i = 0; i < graph.getVerticesNumber(); ++i) {
         if (graph.getOutdegree(i) % 2 != 0) {
             return false;
@@ -48,7 +48,7 @@ bool EulerCycleFind::checkExist() {
     return true;
 }
 
-bool EulerCycleFind::findNextCycle() {
+bool EulerianCycleFind::findNextCycle() {
     while (!path.empty() && !successors.empty()) {
         while (successors.back().empty()) {
             int successor = path.back();

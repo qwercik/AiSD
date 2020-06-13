@@ -12,7 +12,7 @@ TEST_CASE("Generate complete graph and find all Hamilton cycles", "[HamiltonianG
         }
     }
 
-    HamiltonCycleFind finder(graph);
+    HamiltonianCycleFind finder(graph);
     std::list<int> cycle;
     int counter = 0;
     while (true) {
@@ -31,10 +31,10 @@ TEST_CASE("Generate Hamiltonian graph and find at least one Hamilton cycles", "[
     const int VERTICES = 10;
     const int SATURATION = 30;
 
-    BothEulerAndHamiltonGenerator<UndirectedIncidenceMatrixGraph> gen;
+    BothEulerianAndHamiltonianGenerator<UndirectedIncidenceMatrixGraph> gen;
     auto graph = gen.generate(VERTICES, SATURATION);
 
-    HamiltonCycleFind finder(graph);
+    HamiltonianCycleFind finder(graph);
     std::list<int> cycle;
     bool cycleFound = true;
     try {
@@ -50,10 +50,10 @@ TEST_CASE("Generate graph which is not Hamiltonian and try to find at least one 
     const int VERTICES = 10;
     const int SATURATION = 30;
 
-    OnlyEulerAndNotHamiltonGenerator<UndirectedIncidenceMatrixGraph> gen;
+    OnlyEulerianAndNotHamiltonianGenerator<UndirectedIncidenceMatrixGraph> gen;
     auto graph = gen.generate(VERTICES, SATURATION);
 
-    HamiltonCycleFind finder(graph);
+    HamiltonianCycleFind finder(graph);
     std::list<int> cycle;
     bool cycleNotFound = false;
     try {

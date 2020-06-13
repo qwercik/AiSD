@@ -16,8 +16,8 @@ add_library(graphs
 
     src/graphs/CycleFind/CycleFindException.cpp
     src/graphs/CycleFind/CycleNotFoundException.cpp
-    src/graphs/CycleFind/EulerCycleFind.cpp
-    src/graphs/CycleFind/HamiltonCycleFind.cpp
+    src/graphs/CycleFind/EulerianCycleFind.cpp
+    src/graphs/CycleFind/HamiltonianCycleFind.cpp
 
     src/graphs/Search/BreadthFirstSearch.cpp
     src/graphs/Search/DeepFirstSearch.cpp
@@ -29,6 +29,8 @@ add_library(graphs
 
     src/graphs/Generator/GeneratorException.cpp
     src/graphs/Generator/GeneratorSaturationOutOfRangeException.cpp
+
+    src/graphs/random.cpp
 )
 
 target_include_directories(graphs PUBLIC include/)
@@ -53,6 +55,7 @@ add_executable(unit-tests
     test/AdjacencyList/DirectedAdjacencyListGraph.cpp
 
     test/Cycles/HamiltonianGraph.cpp
+    test/Cycles/EulerianGraph.cpp
 )
 
 target_include_directories(unit-tests PUBLIC include/)
