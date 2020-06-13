@@ -2,47 +2,44 @@
 #include <list>
 
 #include <graphs/Graph/UndirectedGraph.hpp>
-#include <graphs/Matrix/GrowableMatrix.hpp>
 #include <graphs/Graph/IncidenceMatrix/UndirectedIncidenceMatrixGraph.hpp>
+#include <graphs/io.hpp>
 
 UndirectedIncidenceMatrixGraph::UndirectedIncidenceMatrixGraph(std::size_t verticesNumber) :
-    UndirectedGraph(verticesNumber),
-    matrix(0, verticesNumber)
+    UndirectedGraph(verticesNumber)
 {}
 
 void UndirectedIncidenceMatrixGraph::addEdge(int startVertex, int endVertex) {
     handleIfVertexNotInRange(startVertex);
     handleIfVertexNotInRange(endVertex);
 
-    matrix.addRow();
-    auto edgeIndex = matrix.getRows() - 1;
-
-    matrix.set(edgeIndex, startVertex, 1);
-    matrix.set(edgeIndex, endVertex, 1);
+    matrix.push_back(std::vector<int>(verticesNumber, 0));
+    matrix.back()[startVertex] = 1;
+    matrix.back()[endVertex] = 1;
 }
 
 void UndirectedIncidenceMatrixGraph::removeEdge(int startVertex, int endVertex) {
     handleIfEdgeNotExist(startVertex, endVertex);
 
-    auto edgeIndex = findEdgeRow(startVertex, endVertex);
-    matrix.removeRow(edgeIndex);
+    auto edgeIterator = findEdgeRow(startVertex, endVertex);
+    matrix.erase(edgeIterator);
 }
 
 bool UndirectedIncidenceMatrixGraph::containsEdge(int startVertex, int endVertex) const {
     handleIfVertexNotInRange(startVertex);
     handleIfVertexNotInRange(endVertex);
 
-    return findEdgeRow(startVertex, endVertex) != -1;
+    return findEdgeRow(startVertex, endVertex) != matrix.end();
 }
 
 std::list<int> UndirectedIncidenceMatrixGraph::getSuccessors(int vertex) const {
     handleIfVertexNotInRange(vertex);
 
     std::list<int> vertices;
-    for (int i = 0; i < matrix.getRows(); ++i) {
-        if (matrix.get(i, vertex) == 1) {
+    for (const auto& edge : matrix) {
+        if (edge[vertex] == 1) {
             int incidentVertex = 0;
-            while (matrix.get(i, incidentVertex) != 1 || incidentVertex == vertex) {
+            while (edge[incidentVertex] != 1 || incidentVertex == vertex) {
                 incidentVertex++;
             }
 
@@ -68,8 +65,8 @@ std::size_t UndirectedIncidenceMatrixGraph::getOutdegree(int vertex) const {
     handleIfVertexNotInRange(vertex);
     std::size_t counter = 0;
 
-    for (int edge = 0; edge < matrix.getRows(); ++edge) {
-        if (matrix.get(edge, vertex) == 1) {
+    for (const auto& edge : matrix) {
+        if (edge[vertex] == 1) {
             counter++;
         }
     }
@@ -77,17 +74,20 @@ std::size_t UndirectedIncidenceMatrixGraph::getOutdegree(int vertex) const {
     return counter;
 }
 
-int UndirectedIncidenceMatrixGraph::findEdgeRow(int startVertex, int endVertex) const {
-    for (int row = 0; row < matrix.getRows(); ++row) {
-        if (matrix.get(row, startVertex) == 1 && matrix.get(row, endVertex) == 1) {
-            return row;
+UndirectedIncidenceMatrixGraph::IncidenceMatrix::const_iterator UndirectedIncidenceMatrixGraph::findEdgeRow(int startVertex, int endVertex) const {
+    auto iterator = matrix.begin();
+    for (; iterator != matrix.end(); ++iterator) {
+        const auto& edge = *iterator;
+        if (edge[startVertex] == 1 && edge[endVertex] == 1) {
+            break;
         }
     }
 
-    // If not find
-    return -1;
+    return iterator;
 }
 
 void UndirectedIncidenceMatrixGraph::dedicatedPrint(std::ostream& stream) const {
-    stream << matrix;
+    for (const auto& edge : matrix) {
+        stream << edge << '\n';
+    }
 }

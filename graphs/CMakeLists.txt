@@ -35,7 +35,7 @@ target_include_directories(graphs PUBLIC include/)
 
 
 add_executable(example
-    example/main.cpp
+    examples/example.cpp
 )
 
 target_include_directories(example PUBLIC include/)

@@ -1,9 +1,10 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
+#include <list>
 
 #include <graphs/Graph/UndirectedGraph.hpp>
-#include <graphs/Matrix/GrowableMatrix.hpp>
 
 // I assume that columns describes each vertex (because its number is constant)
 // and each row describes each edge (because its number can be modified)
@@ -11,6 +12,8 @@
 
 class UndirectedIncidenceMatrixGraph : public UndirectedGraph {
 public:
+    using IncidenceMatrix = std::list<std::vector<int>>;
+
     UndirectedIncidenceMatrixGraph(std::size_t verticesNumber);
 
     virtual void addEdge(int startVertex, int endVertex) override;
@@ -26,8 +29,8 @@ public:
     virtual void dedicatedPrint(std::ostream& stream) const override;
     
 private:
-    int findEdgeRow(int startVertex, int endVertex) const;
+    IncidenceMatrix::const_iterator findEdgeRow(int startVertex, int endVertex) const;
 
 protected:
-    GrowableMatrix<int> matrix;
+    IncidenceMatrix matrix;
 };
