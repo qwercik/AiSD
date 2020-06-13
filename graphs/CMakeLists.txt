@@ -44,12 +44,15 @@ target_link_libraries(example PUBLIC graphs)
 
 add_executable(unit-tests
     test/main.cpp
+
     test/AdjacencyMatrix/UndirectedAdjacencyMatrixGraph.cpp
     test/AdjacencyMatrix/DirectedAdjacencyMatrixGraph.cpp
     test/IncidenceMatrix/UndirectedIncidenceMatrixGraph.cpp
     test/IncidenceMatrix/DirectedIncidenceMatrixGraph.cpp
     test/AdjacencyList/UndirectedAdjacencyListGraph.cpp
     test/AdjacencyList/DirectedAdjacencyListGraph.cpp
+
+    test/Cycles/HamiltonianGraph.cpp
 )
 
 target_include_directories(unit-tests PUBLIC include/)
