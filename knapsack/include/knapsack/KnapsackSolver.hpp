@@ -7,5 +7,5 @@
 template <typename Weight, typename Value>
 class KnapsackSolver {
 public:
-    virtual std::list<Item<Weight, Value>> solve(const std::vector<Item<Weight, Value>>& items) const = 0;
+    virtual std::list<Item<Weight, Value>> solve(Weight capacity, const std::vector<Item<Weight, Value>>& items) const = 0;
 };

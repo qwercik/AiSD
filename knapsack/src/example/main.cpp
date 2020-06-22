@@ -3,8 +3,8 @@
 
 int main() {
     BruteForceKnapsackSolver<unsigned int, unsigned int> bruteSolver;
-    bruteSolver.solve({});
+    bruteSolver.solve(0, {});
 
     DynamicProgrammingKnapsackSolver<unsigned int, unsigned int> dynamicSolver;
-    dynamicSolver.solve({});
+    dynamicSolver.solve(0, {});
 }
