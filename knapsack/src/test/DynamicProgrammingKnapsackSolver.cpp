@@ -2,7 +2,7 @@
 #include <knapsack/DynamicProgrammingKnapsackSolver.hpp>
 
 TEST_CASE("Dynamic programming knapsack problem solving test", "[DynamicProgrammingKnapsack]") {
-    DynamicProgrammingKnapsackSolver solver;
-    solver.solve();
+    DynamicProgrammingKnapsackSolver<unsigned int, unsigned int> solver;
+    solver.solve({});
     REQUIRE(0 == 1);
 }

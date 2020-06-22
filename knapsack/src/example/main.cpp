@@ -2,9 +2,9 @@
 #include <knapsack/knapsack.hpp>
 
 int main() {
-    BruteForceKnapsackSolver bruteSolver;
-    bruteSolver.solve();
+    BruteForceKnapsackSolver<unsigned int, unsigned int> bruteSolver;
+    bruteSolver.solve({});
 
-    DynamicProgrammingKnapsackSolver dynamicSolver;
-    dynamicSolver.solve();
+    DynamicProgrammingKnapsackSolver<unsigned int, unsigned int> dynamicSolver;
+    dynamicSolver.solve({});
 }

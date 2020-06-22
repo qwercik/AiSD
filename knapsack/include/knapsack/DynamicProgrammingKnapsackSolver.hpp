@@ -1,8 +1,14 @@
 #pragma once
 
+#include <list>
+#include <vector>
 #include <knapsack/KnapsackSolver.hpp>
+#include <knapsack/Item.hpp>
 
-class DynamicProgrammingKnapsackSolver : public KnapsackSolver {
+template <typename Weight, typename Value>
+class DynamicProgrammingKnapsackSolver : public KnapsackSolver<Weight, Value> {
 public:
-    virtual void solve() const override;
+    virtual std::list<Item<Weight, Value>> solve(const std::vector<Item<Weight, Value>>& items) const override {
+        return {};
+    }
 };
