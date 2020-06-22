@@ -19,7 +19,7 @@ template <typename Value, typename Iterator>
 Value totalItemsValue(Iterator begin, Iterator end) {
     Value total = 0;
     for(; begin != end; ++begin) {
-        total += (*begin).first;
+        total += (*begin).second;
     }
 
     return total;
