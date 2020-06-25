@@ -6,7 +6,8 @@
 #define dbg std::cerr << "[DBG] "
 #define DBG(x) dbg << #x << " = " << x << '\n';
 
-std::ostream& operator<<(std::ostream& stream, const std::list<bool>& list) {
+template <typename T>
+std::ostream& operator<<(std::ostream& stream, const std::list<T>& list) {
     auto currentElement = list.begin();
     stream << *(currentElement++);
 
