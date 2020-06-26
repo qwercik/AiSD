@@ -1,0 +1,40 @@
+{
+	"tests": [
+		{
+			"name": "Problem plecakowy dla stałej pojemności plecaka",
+			"size_range": {
+				"start": 15,
+				"step": 1,
+				"count": 10
+			},
+			"repeats": 1,
+			"generate_function": "external",
+			"applications": [
+				{ "name": "Algorytm brute-force", "command": "./knapsack/generate.py capacity 50 | ./knapsack/build/benchmark brute", "external_timer": true },
+				{ "name": "Algorytm dynamiczny", "command": "./knapsack/generate.py capacity 50 | ./knapsack/build/benchmark dynamic", "external_timer": true }
+			],
+			"legend": {
+				"arguments": "Liczba przedmiotów do wyboru [sztuki]",
+				"values": "Czas działania algorytmu [s]"
+			}
+		},
+		{
+			"name": "Problem plecakowy dla stałej liczby przedmiotów",
+			"size_range": {
+				"start": 100,
+				"step": 100,
+				"count": 10
+			},
+			"repeats": 1,
+			"generate_function": "external",
+			"applications": [
+				{ "name": "Algorytm brute-force", "command": "./knapsack/generate.py items 100 | ./knapsack/build/benchmark brute", "external_timer": true },
+				{ "name": "Algorytm dynamiczny", "command": "./knapsack/generate.py items 100 | ./knapsack/build/benchmark dynamic", "external_timer": true }
+			],
+			"legend": {
+				"arguments": "Pojemność plecaka [jednostki]",
+				"values": "Czas działania algorytmu [s]"
+			}
+		}
+	]
+}
