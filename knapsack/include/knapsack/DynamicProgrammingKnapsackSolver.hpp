@@ -63,44 +63,46 @@ private:
 template <typename Weight, typename Value>
 class DynamicProgrammingKnapsackSolver : public KnapsackSolver<Weight, Value> {
 public:
-    virtual std::list<Item<Weight, Value>> solve(Weight capacity, const std::vector<Item<Weight, Value>>& items) const override {
-        Matrix<Value> matrix(items.size(), capacity + 1);
+    virtual std::list<Item<Weight, Value>> solve(Weight capacity, const std::vector<Item<Weight, Value>>& allItems) const override {
+        Matrix<Value> matrix = createValuesMatrix(capacity, allItems);
+        return getItemsListFromMatrix(matrix, allItems);
+    }
 
+    Matrix<Value> createValuesMatrix(Weight capacity, const std::vector<Item<Weight, Value>>& allItems) const {
+        Matrix<Value> matrix(allItems.size(), capacity + 1);
+        
         // Nie trzeba zerować macierzy, bo jest ona już wyzerowana ;)
         // Ustawiamy tylko pierwszy wiersz w taki sposób, aby nie powodowało to problemów później
-        auto firstItemWeight = items[0].first;
-        auto firstItemValue = items[0].second;
+        auto firstItemWeight = allItems[0].first;
+        auto firstItemValue = allItems[0].second;
         for (std::size_t column = firstItemWeight; column < matrix.getWidth(); column++) {
             matrix.set(0, column, firstItemValue);
         }
 
         for (std::size_t row = 1; row < matrix.getHeight(); row++) {
             for (std::size_t column = 1; column < matrix.getWidth(); column++) {
-                auto currentWeight = items[row].first;
-                auto currentValue = items[row].second;
-
-                if (column >= currentWeight) {
-                    matrix.set(row, column, std::max(
-                        matrix.get(row - 1, column),
-                        currentValue + matrix.get(row - 1, column - currentWeight)
-                    ));
-                } else {
-                    matrix.set(row, column, matrix.get(row - 1, column));
-                }
+                matrix.set(row, column, calculateMatrixCellValue(matrix, allItems, row, column));
             }
         }
 
-        std::cout << '\n';
-        for (std::size_t r = 0; r < matrix.getHeight(); r++) {
-            for (std::size_t c = 0; c < matrix.getWidth(); c++) {
-                std::cerr << matrix.get(r, c) << "\t";
-            }
+        return matrix;
+    }
 
-            std::cout << '\n';
+    Value calculateMatrixCellValue(const Matrix<Value>& matrix, const std::vector<Item<Weight, Value>>& allItems, std::size_t row, std::size_t column) const {
+        auto currentWeight = allItems[row].first;
+        auto currentValue = allItems[row].second;
+
+        if (column >= currentWeight) {
+            return std::max(
+                matrix.get(row - 1, column),
+                currentValue + matrix.get(row - 1, column - currentWeight)
+            );
+        } else {
+            return matrix.get(row - 1, column);
         }
-        std::cout << '\n';
+    }
 
-
+    std::list<Item<Weight, Value>> getItemsListFromMatrix(const Matrix<Value>& matrix, const std::vector<Item<Weight, Value>>& allItems) const {
         std::list<Item<Weight, Value>> resultList;
         std::size_t positionX = matrix.getWidth() - 1;
         std::size_t positionY = matrix.getHeight() - 1;
@@ -108,14 +110,14 @@ public:
         for (; positionY > 0; positionY--) {
             auto currentValue = matrix.get(positionY, positionX);
             auto upValue = matrix.get(positionY - 1, positionX);
-            if (currentValue != upValue || currentValue - items[positionY].second == matrix.get(positionY - 1, positionX - items[positionY].first)) {
-                resultList.push_front(items[positionY]);
-                positionX -= items[positionY].first;
+            if (currentValue != upValue) {
+                resultList.push_front(allItems[positionY]);
+                positionX -= allItems[positionY].first;
             }
         }
 
         if (matrix.get(positionY, positionX) != 0) {
-            resultList.push_front(items[positionY]);
+            resultList.push_front(allItems[positionY]);
         }
 
         return resultList;

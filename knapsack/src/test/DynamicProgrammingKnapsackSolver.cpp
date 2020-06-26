@@ -11,15 +11,8 @@ TEST_CASE("Dynamic programming knapsack problem solving test 1", "[DynamicProgra
         {5, 1}
     });
 
-    std::cerr << "[DBG] ";
-    for (const auto& item : result) {
-        std::cerr << "[" << item.first << ", "  << item.second << "] ";
-    }
-    std::cerr << '\n';
-
     REQUIRE(result.size() == 3);
     REQUIRE(totalItemsValue<unsigned int>(result.begin(), result.end()) == 12);
-    REQUIRE(totalItemsWeight<unsigned int>(result.begin(), result.end()) == 12);
 }
 
 TEST_CASE("Dynamic programming knapsack problem solving test 2", "[DynamicProgrammingKnapsack]") {
@@ -32,15 +25,8 @@ TEST_CASE("Dynamic programming knapsack problem solving test 2", "[DynamicProgra
         {4, 10}
     });
 
-    std::cerr << "[DBG] ";
-    for (const auto& item : result) {
-        std::cerr << "[" << item.first << ", "  << item.second << "] ";
-    }
-    std::cerr << '\n';
-
     REQUIRE(result.size() == 4);
     REQUIRE(totalItemsValue<unsigned int>(result.begin(), result.end()) == 15);
-    REQUIRE(totalItemsWeight<unsigned int>(result.begin(), result.end()) == 8);
 }
 
 TEST_CASE("Dynamic programming knapsack problem solving test 3", "[DynamicProgrammingKnapsack]") {
@@ -54,5 +40,33 @@ TEST_CASE("Dynamic programming knapsack problem solving test 3", "[DynamicProgra
 
     REQUIRE(result.size() == 2);
     REQUIRE(totalItemsValue<unsigned int>(result.begin(), result.end()) == 9);
-    REQUIRE(totalItemsWeight<unsigned int>(result.begin(), result.end()) == 7);
+}
+
+TEST_CASE("Dynamic programming knapsack problem solving test 4", "[DynamicProgrammingKnapsack]") {
+    DynamicProgrammingKnapsackSolver<unsigned int, unsigned int> solver;
+    auto result = solver.solve(112, {
+        {4, 49},
+        {53, 19},
+        {27, 80},
+        {3, 40},
+        {8, 70},
+        {45, 62},
+        {20, 37},
+        {1, 69},
+        {55, 53},
+        {21, 17},
+        {44, 45},
+        {58, 55},
+        {26, 78},
+        {30, 11},
+        {9, 32},
+        {21, 40},
+        {26, 18},
+        {43, 48},
+        {47, 11},
+        {17, 5}
+    });
+
+    REQUIRE(result.size() == 8);
+    REQUIRE(totalItemsValue<unsigned int>(result.begin(), result.end()) == 463);
 }
