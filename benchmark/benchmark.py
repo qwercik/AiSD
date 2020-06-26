@@ -22,15 +22,18 @@ def main():
 	appFilename, configFilename, resultsFilename = sys.argv
 
 	results = {
-		'tests': {}
+		'tests': {},
+		'legend': {}
 	}
 
 	config = json.loads(open(configFilename, 'r').read())
+
 	for test in config['tests']:
 		testName = test['name']
 		print(f'Running test "{testName}"')
 
 		results['tests'][testName] = {}
+		results['legend'][testName] = test.get('legend', {})
 		
 		for testNumber in range(test['size_range']['count']):
 			currentSize = test['size_range']['start'] + test['size_range']['step'] * testNumber
@@ -56,8 +59,9 @@ def main():
 
 					startTime = time.time()
 					externalTimerResult = subprocess.check_output(
-						app['command'].split(),
-						input=inputData	
+						app['command'],
+						input=inputData,
+						shell=True
 					)
 					endTime = time.time()
 					

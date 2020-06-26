@@ -22,8 +22,8 @@ def main():
 	for testName, testResults in results['tests'].items():
 		pyplot.figure(num=testName)
 		pyplot.title(testName)
-		pyplot.xlabel('Liczba sortowanych elementów')
-		pyplot.ylabel('Czas wykonania [s]')
+		pyplot.xlabel(results.get('legend', {}).get(testName, {}).get('arguments', ''))
+		pyplot.ylabel(results.get('legend', {}).get(testName, {}).get('values', ''))
 
 		for index, (appName, appResults) in enumerate(testResults.items()):
 			x = []
